@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Drawdy Blog</title>
+    <link>https://drawdy-landing.vercel.app/blog</link>
+    <description>Updates, announcements, and design thinking from the Drawdy team.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 27 Jul 2026 05:51:35 GMT</lastBuildDate>
+    <atom:link href="https://drawdy-landing.vercel.app/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Introducing Drawdy: The Infinite Canvas for Builders</title>
+      <link>https://drawdy-landing.vercel.app/blog/introducing-drawdy</link>
+      <guid>https://drawdy-landing.vercel.app/blog/introducing-drawdy</guid>
+      <pubDate>Wed, 22 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Meet Drawdy — the whiteboard that thinks like code. An infinite canvas designed for system thinkers, architects, and builders.</description>
+    </item>
+    <item>
+      <title>Why We Chose Local-First Architecture</title>
+      <link>https://drawdy-landing.vercel.app/blog/local-first-architecture</link>
+      <guid>https://drawdy-landing.vercel.app/blog/local-first-architecture</guid>
+      <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Your data should live on your device by default. Here&apos;s why we built Drawdy with a local-first architecture — and what that means for you.</description>
+    </item>
+    <item>
+      <title>Real-Time Collaboration Without Compromise</title>
+      <link>https://drawdy-landing.vercel.app/blog/realtime-collaboration</link>
+      <guid>https://drawdy-landing.vercel.app/blog/realtime-collaboration</guid>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 GMT</pubDate>
+      <description>How we built multiplayer collaboration on top of a local-first architecture — without sacrificing speed or privacy.</description>
+    </item>
+    <item>
+      <title>From Excalidraw to Drawdy: What&apos;s Different</title>
+      <link>https://drawdy-landing.vercel.app/blog/excalidraw-to-drawdy</link>
+      <guid>https://drawdy-landing.vercel.app/blog/excalidraw-to-drawdy</guid>
+      <pubDate>Tue, 30 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Excalidraw changed how we think about whiteboards. Here&apos;s how Drawdy builds on that foundation — and where it goes further.</description>
+    </item>
+    <item>
+      <title>Building a Plugin API for the Canvas</title>
+      <link>https://drawdy-landing.vercel.app/blog/plugin-api</link>
+      <guid>https://drawdy-landing.vercel.app/blog/plugin-api</guid>
+      <pubDate>Mon, 22 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Drawdy&apos;s plugin API lets you extend the canvas with custom nodes, integrations, and workflows. Here&apos;s our approach to building an extensible platform.</description>
+    </item>
+    <item>
+      <title>Hand-Drawn UI: The Design Philosophy Behind Drawdy</title>
+      <link>https://drawdy-landing.vercel.app/blog/hand-drawn-ui</link>
+      <guid>https://drawdy-landing.vercel.app/blog/hand-drawn-ui</guid>
+      <pubDate>Sun, 14 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Why Drawdy looks sketchy on purpose — and how hand-drawn aesthetics change the way people think and collaborate.</description>
+    </item>
+    <item>
+      <title>Version History and Why It Should Be Free</title>
+      <link>https://drawdy-landing.vercel.app/blog/version-history</link>
+      <guid>https://drawdy-landing.vercel.app/blog/version-history</guid>
+      <pubDate>Fri, 05 Jun 2026 00:00:00 GMT</pubDate>
+      <description>Version history shouldn&apos;t be a premium feature. Here&apos;s why Drawdy includes unlimited version history for everyone — and how we built it.</description>
+    </item>
+    <item>
+      <title>Our Roadmap: What&apos;s Coming Next</title>
+      <link>https://drawdy-landing.vercel.app/blog/roadmap</link>
+      <guid>https://drawdy-landing.vercel.app/blog/roadmap</guid>
+      <pubDate>Thu, 28 May 2026 00:00:00 GMT</pubDate>
+      <description>A transparent look at what we&apos;re building next — from collaboration features to the plugin ecosystem and beyond.</description>
+    </item>
+  </channel>
+</rss>

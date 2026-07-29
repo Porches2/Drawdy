@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog — Drawdy</title>
+<meta name="description" content="Updates, announcements, and design thinking from the Drawdy team.">
+<link rel="alternate" type="application/rss+xml" title="Drawdy Blog" href="/blog/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+@font-face{
+  font-family:'Google Sans Flex';
+  font-style:normal;
+  font-display:swap;
+  font-weight:1 1000;
+  src:url(https://cdn.jsdelivr.net/fontsource/fonts/google-sans-flex:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+}
+</style>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#FAFAF5;--ink:#17171B;--muted:#6F6F68;--hairline:#E8E8DF;
+  --lime:#CDFF00;--lime-ink:#566B00;--blue:#3D6DF2;--violet:#8E7BF0;--radius:14px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Google Sans Flex',system-ui,sans-serif;
+  background:var(--paper);color:var(--ink);line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--lime);color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ---------- Nav ---------- */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 40px;
+  background:color-mix(in srgb,var(--paper) 82%,transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s;
+}
+#nav.scrolled{border-bottom-color:var(--hairline)}
+.logo{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:20px;color:var(--ink)}
+.logo-img{height:28px}
+.nav-links{display:flex;gap:34px;font-size:15px;font-weight:500;color:var(--muted)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--ink)}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:var(--paper);
+  font-family:inherit;font-size:15px;font-weight:500;
+  padding:11px 22px;border-radius:100px;border:none;cursor:pointer;
+  transition:transform .15s,box-shadow .15s;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(23,23,27,.14)}
+.btn:active{transform:translateY(0)}
+
+/* ---------- Blog Hero ---------- */
+.blog-hero{
+  max-width:1080px;margin:0 auto;
+  padding:160px 24px 0;
+  text-align:center;
+}
+.eyebrow{
+  display:inline-block;font-size:13px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--lime-ink);
+  background:color-mix(in srgb,var(--lime) 32%,var(--paper));
+  border:1px solid color-mix(in srgb,var(--lime) 65%,var(--paper));
+  padding:7px 16px;border-radius:100px;margin-bottom:34px;
+}
+.blog-hero h1{
+  font-size:clamp(36px,5vw,64px);font-weight:600;
+  letter-spacing:-0.035em;line-height:1.08;margin-bottom:16px;
+}
+.blog-hero h1 .accent{
+  font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-0.01em;
+}
+.blog-hero .sub{font-size:18px;color:var(--muted);max-width:44ch;margin:0 auto 48px}
+
+/* ---------- Category Filters ---------- */
+.filters{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:64px;
+}
+.filter-btn{
+  font-family:inherit;font-size:14px;font-weight:500;
+  padding:8px 18px;border-radius:100px;
+  border:1px solid var(--hairline);
+  background:transparent;color:var(--muted);cursor:pointer;
+  transition:all .2s;
+}
+.filter-btn:hover{border-color:color-mix(in srgb,var(--lime) 65%,var(--paper));color:var(--ink)}
+.filter-btn[data-active="true"]{
+  background:color-mix(in srgb,var(--lime) 32%,var(--paper));
+  border-color:color-mix(in srgb,var(--lime) 65%,var(--paper));
+  color:var(--lime-ink);
+}
+
+/* ---------- Post Grid ---------- */
+.post-grid{
+  max-width:1080px;margin:0 auto;padding:0 24px 100px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:48px 36px;
+}
+.post-card{
+  display:flex;flex-direction:column;
+  transition:opacity .35s,transform .35s;
+}
+.post-card.hidden{
+  opacity:0;transform:translateY(12px);
+  pointer-events:none;position:absolute;visibility:hidden;
+}
+.post-card:hover .post-title{text-decoration:underline;text-underline-offset:3px}
+.post-thumb{
+  aspect-ratio:16/10;border-radius:var(--radius);
+  margin-bottom:18px;overflow:hidden;
+  position:relative;
+}
+.post-thumb-inner{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+}
+.grad-1{background:#F4F2E6}
+.grad-2{background:#EBEAF5}
+.grad-3{background:#E4ECF6}
+.grad-4{background:#EDF3E0}
+.grad-5{background:#EAE7F4}
+.grad-6{background:#E2ECF3}
+.grad-7{background:#EDEAD4}
+.grad-8{background:#EBF2E3}
+.thumb-icon{
+  width:56px;height:56px;
+}
+.post-cat{
+  display:inline-block;font-size:12px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--lime-ink);
+  margin-bottom:10px;
+}
+.post-title{
+  font-size:18px;font-weight:600;letter-spacing:-0.01em;line-height:1.3;
+  color:var(--ink);margin-bottom:10px;
+}
+.post-meta{font-size:13px;color:var(--muted)}
+
+/* ---------- Footer ---------- */
+footer{
+  border-top:1px solid var(--hairline);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:26px 40px;font-size:14px;color:var(--muted);
+}
+footer .logo{font-size:24px;color:var(--ink)}
+.footer-logo-img{height:24px}
+footer a{transition:color .2s}
+footer a:hover{color:var(--ink)}
+
+/* ---------- Reduced Motion ---------- */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- Responsive ---------- */
+@media(max-width:820px){
+  #nav{padding:14px 20px}
+  .nav-links{display:none}
+  .blog-hero{padding-top:120px}
+  .blog-hero h1{font-size:clamp(30px,7vw,48px)}
+  .post-grid{grid-template-columns:repeat(2,1fr);gap:36px 24px;padding:0 20px 80px}
+  footer{padding:22px 20px}
+}
+@media(max-width:540px){
+  .post-grid{grid-template-columns:1fr;gap:40px;padding:0 20px 60px}
+  .filters{gap:8px}
+  .filter-btn{font-size:13px;padding:7px 14px}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="logo" href="/" aria-label="Drawdy">
+    <img class="logo-img" src="/Logo.svg" alt="Drawdy">
+  </a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#compare">Compare</a>
+    <a href="/#privacy">Privacy</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/blog" class="active">Blog</a>
+  </div>
+  <a href="/" class="btn">Start now</a>
+</nav>
+
+<section class="blog-hero">
+  <span class="eyebrow">From the team</span>
+  <h1>The Drawdy <span class="accent">Blog</span></h1>
+  <p class="sub">Updates, announcements, and design thinking from the team building the infinite canvas for builders.</p>
+  <div class="filters">
+    <button class="filter-btn" data-filter="all" data-active="true">All</button>
+    <button class="filter-btn" data-filter="announcements">Announcements</button>
+    <button class="filter-btn" data-filter="product">Product</button>
+    <button class="filter-btn" data-filter="design">Design</button>
+  </div>
+</section>
+
+<div class="post-grid" id="postGrid">
+
+  <a class="post-card" href="/blog/introducing-drawdy" data-category="announcements">
+    <div class="post-thumb">
+      <div class="post-thumb-inner grad-1">
+        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><rect x="5" y="6" width="24" height="20" rx="4" fill="white" fill-opacity="0.3" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.22" stroke-linejoin="round"/><rect x="12" y="13" width="24" height="20" rx="4" fill="white" fill-opacity="0.4" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.35" stroke-linejoin="round"/><rect x="19" y="20" width="24" height="20" rx="4" fill="white" fill-opacity="0.5" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.5" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <span class="post-cat">Announcements</span>
+    <h3 class="post-title">Introducing Drawdy: The Infinite Canvas for Builders</h3>
+    <span class="post-meta">Jul 22, 2026 &middot; Alex Kim</span>
+  </a>
+
+  <a class="post-card" href="/blog/local-first-architecture" data-category="design">
+    <div class="post-thumb">
+      <div class="post-thumb-inner grad-2">
+        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" fill="white" fill-opacity="0.4" stroke="#8F8FFF" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round"/><rect x="19" y="22" width="10" height="9" rx="2" stroke="#8F8FFF" stroke-width="2.5" stroke-opacity="0.5" stroke-linejoin="round"/><path d="M21,22 L21,19 C21,16.5 22.5,15 24,15 C25.5,15 27,16.5 27,19 L27,22" stroke="#8F8FFF" stroke-width="2.5" stroke-opacity="0.5" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <span class="post-cat">Design</span>
+    <h3 class="post-title">Why We Chose Local-First Architecture</h3>
+    <span class="post-meta">Jul 15, 2026 &middot; Alex Kim</span>
+  </a>
+
+  <a class="post-card" href="/blog/realtime-collaboration" data-category="product">
+    <div class="post-thumb">
+      <div class="post-thumb-inner grad-3">
+        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><circle cx="18" cy="24" r="14" fill="white" fill-opacity="0.35" stroke="#3D6DF2" stroke-width="4.5" stroke-opacity="0.35" stroke-linecap="round"/><circle cx="30" cy="24" r="14" fill="white" fill-opacity="0.35" stroke="#3D6DF2" stroke-width="4.5" stroke-opacity="0.5" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+    <span class="post-cat">Product</span>
+    <h3 class="post-title">Real-Time Collaboration Without Compromise</h3>
+    <span class="post-meta">Jul 8, 2026 &middot; Alex Kim</span>
+  </a>
+
+  <a class="post-card" href="/blog/excalidraw-to-drawdy" data-category="announcements">
+    <div class="post-thumb">
+      <div class="post-thumb-inner grad-4">
+        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><path d="M24,5 L43,24 L24,43 L5,24Z" fill="white" fill-opacity="0.4" stroke="#A9C41E" stroke-width="4.5" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/><path d="M24,15 L33,24 L24,33 L15,24Z" fill="none" stroke="#A9C41E" stroke-width="3" stroke-opacity="0.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <span class="post-cat">Announcements</span>
+    <h3 class="post-title">From Excalidraw to Drawdy: What's Different</h3>
+    <span class="post-meta">Jun 30, 2026 &middot; Alex Kim</span>
+  </a>
+
+  <a class="post-card" href="/blog/plugin-api" data-category="product">
+    <div class="post-thumb">
+      <div class="post-thumb-inner grad-5">
+        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><path d="M18,8 L4,24 L18,40" stroke="#8E7BF0" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/><path d="M30,8 L44,24 L30,40" stroke="#8E7BF0" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <span class="post-cat">Product</span>
+    <h3 class="post-title">Building a Plugin API for the Canvas</h3>
+    <span class="post-meta">Jun 22, 2026 &middot; Alex Kim</span>
+  </a>
+
+  <a class="post-card" href="/blog/hand-drawn-ui" data-category="design">
+    <div class="post-thumb">
+      <div class="post-thumb-inner grad-6">
+        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><path d="M4,34 C10,20 16,38 24,24 C32,10 38,28 44,14" stroke="#3D6DF2" stroke-width="5.5" stroke-opacity="0.4" stroke-linecap="round"/><circle cx="44" cy="14" r="3" fill="#3D6DF2" fill-opacity="0.35"/></svg>
+      </div>
+    </div>
+    <span class="post-cat">Design</span>
+    <h3 class="post-title">Hand-Drawn UI: The Design Philosophy Behind Drawdy</h3>
+    <span class="post-meta">Jun 14, 2026 &middot; Alex Kim</span>
+  </a>
+
+  <a class="post-card" href="/blog/version-history" data-category="product">
+    <div class="post-thumb">
+      <div class="post-thumb-inner grad-7">
+        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" fill="white" fill-opacity="0.4" stroke="#8F8FFF" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round"/><path d="M24,13 L24,24 L33,29" stroke="#8F8FFF" stroke-width="3.5" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+    <span class="post-cat">Product</span>
+    <h3 class="post-title">Version History and Why It Should Be Free</h3>
+    <span class="post-meta">Jun 5, 2026 &middot; Alex Kim</span>
+  </a>
+
+  <a class="post-card" href="/blog/roadmap" data-category="announcements">
+    <div class="post-thumb">
+      <div class="post-thumb-inner grad-8">
+        <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><path d="M6,38 C12,38 14,26 20,26 C26,26 28,32 34,28 C38,25 40,14 42,8" stroke="#A9C41E" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round"/><path d="M36,8 L42,8 L42,14" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="38" r="3" fill="#A9C41E" fill-opacity="0.35"/></svg>
+      </div>
+    </div>
+    <span class="post-cat">Announcements</span>
+    <h3 class="post-title">Our Roadmap: What's Coming Next</h3>
+    <span class="post-meta">May 28, 2026 &middot; Alex Kim</span>
+  </a>
+</div>
+
+<footer>
+  <a class="logo" href="/" aria-label="Drawdy"><img class="logo-img footer-logo-img" src="/Logo.svg" alt="Drawdy"></a>
+  <span>&copy; 2026 Drawdy</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  /* Nav scroll border */
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled',window.scrollY>10);
+  },{passive:true});
+
+  /* Category filtering */
+  var btns=document.querySelectorAll('.filter-btn');
+  var cards=document.querySelectorAll('.post-card');
+
+  btns.forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var filter=btn.getAttribute('data-filter');
+      btns.forEach(function(b){b.setAttribute('data-active','false')});
+      btn.setAttribute('data-active','true');
+
+      cards.forEach(function(card){
+        var cat=card.getAttribute('data-category');
+        if(filter==='all'||cat===filter){
+          card.classList.remove('hidden');
+        }else{
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  /* GSAP entrance animations */
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Hero */
+  var heroEls='.blog-hero .eyebrow, .blog-hero h1, .blog-hero .sub';
+  gsap.set(heroEls,{opacity:0,y:26});
+  gsap.to(heroEls,{opacity:1,y:0,duration:.9,ease:'power3.out',stagger:.12,delay:.15});
+
+  /* Filters */
+  gsap.set('.filters',{opacity:0,y:14});
+  gsap.to('.filters',{opacity:1,y:0,duration:.7,ease:'power2.out',delay:.55});
+
+  /* Cards */
+  gsap.set('.post-card',{opacity:0,y:32});
+  ScrollTrigger.batch('.post-card',{
+    start:'top 88%',
+    onEnter:function(batch){
+      gsap.to(batch,{opacity:1,y:0,duration:.8,ease:'power3.out',stagger:.1});
+    },
+    once:true
+  });
+
+  ScrollTrigger.refresh();
+})();
+</script>
+</body>
+</html>

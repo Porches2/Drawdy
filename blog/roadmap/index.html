@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Our Roadmap: What's Coming Next — Drawdy Blog</title>
+<meta name="description" content="A transparent look at what we're building next — from collaboration features to the plugin ecosystem and beyond.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Our Roadmap: What's Coming Next">
+<meta property="og:description" content="A transparent look at what we're building next — from collaboration features to the plugin ecosystem and beyond.">
+<meta property="og:url" content="https://drawdy-landing.vercel.app/blog/roadmap">
+<meta property="og:site_name" content="Drawdy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Our Roadmap: What's Coming Next">
+<meta name="twitter:description" content="A transparent look at what we're building next — from collaboration features to the plugin ecosystem and beyond.">
+<link rel="canonical" href="https://drawdy-landing.vercel.app/blog/roadmap">
+<link rel="alternate" type="application/rss+xml" title="Drawdy Blog" href="/blog/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+@font-face{
+  font-family:'Google Sans Flex';
+  font-style:normal;
+  font-display:swap;
+  font-weight:1 1000;
+  src:url(https://cdn.jsdelivr.net/fontsource/fonts/google-sans-flex:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Our Roadmap: What's Coming Next","datePublished":"2026-05-28T00:00:00.000Z","author":{"@type":"Person","name":"Alex Kim"},"publisher":{"@type":"Organization","name":"Drawdy"},"description":"A transparent look at what we're building next — from collaboration features to the plugin ecosystem and beyond."}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#FAFAF5;--ink:#17171B;--muted:#6F6F68;--hairline:#E8E8DF;
+  --lime:#CDFF00;--lime-ink:#566B00;--blue:#3D6DF2;--violet:#8E7BF0;--radius:14px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Google Sans Flex',system-ui,sans-serif;
+  background:var(--paper);color:var(--ink);line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--lime);color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:4px}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+/* ---------- Nav ---------- */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 40px;
+  background:color-mix(in srgb,var(--paper) 82%,transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s;
+}
+#nav.scrolled{border-bottom-color:var(--hairline)}
+.logo{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:20px;color:var(--ink)}
+.logo-img{height:28px}
+.nav-links{display:flex;gap:34px;font-size:15px;font-weight:500;color:var(--muted)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--ink)}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--ink);color:var(--paper);
+  font-family:inherit;font-size:15px;font-weight:500;
+  padding:11px 22px;border-radius:100px;border:none;cursor:pointer;
+  transition:transform .15s,box-shadow .15s;
+}
+.btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(23,23,27,.14)}
+.btn:active{transform:translateY(0)}
+
+/* ---------- Hero Thumbnail ---------- */
+.article-hero{
+  max-width:680px;margin:0 auto;
+  padding:140px 24px 0;
+}
+.article-hero-inner{
+  width:100%;aspect-ratio:16/9;border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.article-hero-inner .thumb-icon{
+  width:80px;height:80px;
+}
+.grad-1{background:#F4F2E6}
+.grad-2{background:#EBEAF5}
+.grad-3{background:#E4ECF6}
+.grad-4{background:#EDF3E0}
+.grad-5{background:#EAE7F4}
+.grad-6{background:#E2ECF3}
+.grad-7{background:#EDEAD4}
+.grad-8{background:#EBF2E3}
+
+/* ---------- Article Layout ---------- */
+.article-header{
+  max-width:680px;margin:0 auto;
+  padding:32px 24px 0;
+}
+.back-link{
+  position:fixed;left:40px;top:88px;z-index:40;
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:14px;font-weight:500;color:var(--muted);
+  transition:color .2s;
+}
+.back-link:hover{color:var(--ink)}
+.back-link svg{width:16px;height:16px;flex-shrink:0}
+.article-cat{
+  display:inline-block;font-size:12px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--lime-ink);
+  margin-bottom:14px;
+}
+.article-header h1{
+  font-size:clamp(30px,4.5vw,44px);font-weight:600;
+  letter-spacing:-0.03em;line-height:1.12;margin-bottom:18px;
+}
+.article-meta{
+  font-size:14px;color:var(--muted);
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.article-meta .sep{color:var(--hairline)}
+
+/* ---------- Article Content ---------- */
+.article-content{
+  max-width:680px;margin:0 auto;
+  padding:48px 24px 80px;
+  font-size:17px;line-height:1.75;color:var(--ink);
+}
+.article-content > * + *{margin-top:1.5em}
+.article-content h2{
+  font-size:26px;font-weight:600;letter-spacing:-0.02em;
+  line-height:1.2;margin-top:2.5em;margin-bottom:0.3em;
+}
+.article-content h3{
+  font-size:21px;font-weight:600;letter-spacing:-0.01em;
+  line-height:1.3;margin-top:2em;margin-bottom:0.2em;
+}
+.article-content h4{
+  font-size:18px;font-weight:600;
+  line-height:1.3;margin-top:1.75em;margin-bottom:0.2em;
+}
+.article-content p{margin-top:1.25em}
+.article-content a{
+  color:var(--blue);text-decoration:underline;
+  text-underline-offset:2px;transition:color .2s;
+}
+.article-content a:hover{color:var(--ink)}
+.article-content strong{font-weight:600}
+.article-content ul,.article-content ol{
+  padding-left:1.5em;margin-top:1em;
+}
+.article-content li{margin-top:0.5em}
+.article-content li::marker{color:var(--muted)}
+.article-content blockquote{
+  border-left:3px solid var(--lime);
+  padding:0.5em 0 0.5em 1.25em;
+  color:var(--muted);font-style:italic;
+  margin:1.5em 0;
+}
+.article-content hr{
+  border:none;border-top:1px solid var(--hairline);
+  margin:2.5em 0;
+}
+.article-content img{
+  border-radius:var(--radius);
+  margin:2em 0;max-width:100%;height:auto;
+}
+.article-content code{
+  font-family:'SF Mono',SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;
+  font-size:0.88em;
+  background:color-mix(in srgb,var(--ink) 6%,var(--paper));
+  padding:0.15em 0.4em;border-radius:5px;
+}
+.article-content pre{
+  background:var(--ink);color:#e8e8e8;
+  padding:1.25em 1.5em;border-radius:var(--radius);
+  overflow-x:auto;margin:1.75em 0;
+  font-size:14px;line-height:1.6;
+}
+.article-content pre code{
+  background:none;padding:0;border-radius:0;
+  color:inherit;font-size:inherit;
+}
+
+/* ---------- Syntax Highlighting ---------- */
+.hljs-keyword,.hljs-selector-tag{color:#c792ea}
+.hljs-string,.hljs-attr{color:#c3e88d}
+.hljs-number,.hljs-literal{color:#f78c6c}
+.hljs-comment{color:#6f6f68;font-style:italic}
+.hljs-function .hljs-title,.hljs-title.function_{color:#82aaff}
+.hljs-built_in{color:#89ddff}
+.hljs-type,.hljs-class .hljs-title{color:#ffcb6b}
+.hljs-variable,.hljs-template-variable{color:#f07178}
+.hljs-meta{color:#89ddff}
+
+/* ---------- Post Navigation ---------- */
+.post-nav{
+  max-width:680px;margin:0 auto;
+  padding:0 24px 80px;
+  display:flex;justify-content:space-between;align-items:baseline;
+  border-top:1px solid var(--hairline);
+  padding-top:32px;
+}
+.post-nav-link{
+  display:inline-flex;flex-direction:column;gap:4px;
+  font-size:14px;color:var(--muted);
+  transition:color .2s;max-width:45%;
+}
+.post-nav-link:hover{color:var(--ink)}
+.post-nav-link.next{text-align:right;margin-left:auto}
+.post-nav-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.post-nav-title{font-size:14px;font-weight:500;color:var(--ink);line-height:1.3}
+
+/* ---------- Footer ---------- */
+footer{
+  border-top:1px solid var(--hairline);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:26px 40px;font-size:14px;color:var(--muted);
+}
+footer .logo{font-size:24px;color:var(--ink)}
+.footer-logo-img{height:24px}
+footer a{transition:color .2s}
+footer a:hover{color:var(--ink)}
+
+/* ---------- Reduced Motion ---------- */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1080px){
+  .back-link{
+    position:static;
+    margin-top:80px;
+    margin-bottom:20px;
+  }
+  .article-hero{padding-top:0}
+}
+@media(max-width:820px){
+  #nav{padding:14px 20px}
+  .nav-links{display:none}
+  footer{padding:22px 20px}
+}
+@media(max-width:540px){
+  .post-nav{flex-direction:column;gap:16px}
+  .post-nav-link{max-width:100%}
+  .post-nav-link.next{text-align:left;margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="logo" href="/" aria-label="Drawdy">
+    <img class="logo-img" src="/Logo.svg" alt="Drawdy">
+  </a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#compare">Compare</a>
+    <a href="/#privacy">Privacy</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/blog" class="active">Blog</a>
+  </div>
+  <a href="/" class="btn">Start now</a>
+</nav>
+
+<a class="back-link" href="/blog">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12L6 8l4-4"/></svg>
+  Back to blog
+</a>
+
+<div class="article-hero">
+  <div class="article-hero-inner grad-8">
+    <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><path d="M6,38 C12,38 14,26 20,26 C26,26 28,32 34,28 C38,25 40,14 42,8" stroke="#A9C41E" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round"/><path d="M36,8 L42,8 L42,14" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="38" r="3" fill="#A9C41E" fill-opacity="0.35"/></svg>
+  </div>
+</div>
+
+<article>
+  <header class="article-header">
+    <span class="article-cat">Announcements</span>
+    <h1>Our Roadmap: What's Coming Next</h1>
+    <div class="article-meta">
+      <span>May 28, 2026</span>
+      <span class="sep">&middot;</span>
+      <span>Alex Kim</span>
+      <span class="sep">&middot;</span>
+      <span>2 min read</span>
+    </div>
+  </header>
+
+  <div class="article-content">
+    <p>We believe in building in the open. Here’s what we’re working on and what’s coming next.</p>
+<h2>Now: Foundation</h2>
+<p>These are shipping in the next few weeks:</p>
+<ul>
+<li><strong>Real-time collaboration.</strong> Live cursors, presence indicators, and conflict-free editing with the people you invite.</li>
+<li><strong>Export improvements.</strong> PNG, SVG, and PDF export with both hand-drawn and clean rendering modes.</li>
+<li><strong>Keyboard shortcuts overhaul.</strong> A comprehensive shortcut system with a command palette for power users.</li>
+<li><strong>Performance optimizations.</strong> We’re targeting 60fps on boards with 1,000+ elements. Current benchmarks are promising.</li>
+</ul>
+<h2>Next: Platform</h2>
+<p>These are in active development:</p>
+<ul>
+<li><strong>Plugin API v1.</strong> The developer-facing API for building custom node types, canvas actions, and integrations. We’re working with early partners to refine the API before release.</li>
+<li><strong>Plugin registry.</strong> A place to discover and install community-built plugins. Think of it as a curated marketplace for canvas extensions.</li>
+<li><strong>Template library.</strong> Pre-built board templates for common use cases: architecture diagrams, user story maps, sprint retrospectives, system design interviews.</li>
+<li><strong>Board linking.</strong> Connect boards to each other. Navigate between related diagrams like pages in a wiki.</li>
+</ul>
+<h2>Later: Ecosystem</h2>
+<p>These are on the horizon:</p>
+<ul>
+<li><strong>Mobile app.</strong> View and lightly edit boards on iOS and Android. Heavy editing stays on desktop where you have screen real estate.</li>
+<li><strong>API access.</strong> Programmatic access to read and write board data. Build automations, generate boards from code, integrate with CI/CD pipelines.</li>
+<li><strong>Team workspaces.</strong> Shared spaces for teams with role-based access, shared templates, and centralized billing.</li>
+<li><strong>AI assistance.</strong> Smart layout suggestions, diagram generation from text descriptions, and automated documentation from board content.</li>
+</ul>
+<h2>What we won’t build</h2>
+<p>Transparency goes both ways. Here’s what we’re intentionally not building:</p>
+<ul>
+<li><strong>Slide presentations.</strong> Drawdy is a canvas for thinking, not a slide deck tool. There are great tools for presentations already.</li>
+<li><strong>Project management.</strong> We’re not building Gantt charts, sprint boards, or time tracking. We’ll integrate with tools that do this well.</li>
+<li><strong>A design tool.</strong> Drawdy is for architecture and systems thinking. If you need pixel-perfect UI design, use Figma.</li>
+</ul>
+<h2>Your input matters</h2>
+<p>This roadmap isn’t set in stone. We prioritize based on what users actually need, not what sounds impressive on a features page.</p>
+<p>If there’s something you’d love to see, let us know. The best product decisions come from real conversations with the people using the tool.</p>
+
+  </div>
+</article>
+
+<nav class="post-nav" aria-label="Post navigation">
+  <a class="post-nav-link prev" href="/blog/version-history">
+    <span class="post-nav-label">&larr; Previous</span>
+    <span class="post-nav-title">Version History and Why It Should Be Free</span>
+  </a>
+  
+</nav>
+
+<footer>
+  <a class="logo" href="/" aria-label="Drawdy"><img class="logo-img footer-logo-img" src="/Logo.svg" alt="Drawdy"></a>
+  <span>&copy; 2026 Drawdy</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled',window.scrollY>10);
+  },{passive:true});
+
+  if(typeof gsap!=='undefined'&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+    gsap.set('.article-hero,.article-header,.article-content,.post-nav',{opacity:0,y:20});
+    gsap.to('.article-hero',{opacity:1,y:0,duration:.7,ease:'power3.out',delay:.05});
+    gsap.to('.article-header',{opacity:1,y:0,duration:.7,ease:'power3.out',delay:.15});
+    gsap.to('.article-content',{opacity:1,y:0,duration:.7,ease:'power3.out',delay:.3});
+    gsap.to('.post-nav',{opacity:1,y:0,duration:.6,ease:'power3.out',delay:.45});
+  }
+})();
+</script>
+</body>
+</html>

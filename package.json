@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "drawdy-landing",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "node build.js && npx serve .",
+    "new-post": "node -e \"const d=new Date().toISOString().slice(0,10);const s=process.argv[1]||'untitled';require('fs').writeFileSync('posts/'+s+'.md','---\\ntitle: \\\"\\\"\\ndate: '+d+'\\nauthor: Alex Kim\\ncategory: announcements\\ngradient: 1\\nicon: layers\\nexcerpt: \\\"\\\"\\n---\\n\\nWrite your post here.\\n')\" --"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.1.0",
+    "markdown-it-highlightjs": "^4.2.0"
+  }
+}
