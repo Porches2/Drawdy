@@ -3,17 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Why We Chose Local-First Architecture — Drawdy Blog</title>
-<meta name="description" content="Your data should live on your device by default. Here's why we built Drawdy with a local-first architecture — and what that means for you.">
+<title>Fast + Optimized Board — Drawdy Blog</title>
+<meta name="description" content="Speed isn't a feature — it's the foundation. Here's how Drawdy stays fast with thousands of elements on the canvas.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Why We Chose Local-First Architecture">
-<meta property="og:description" content="Your data should live on your device by default. Here's why we built Drawdy with a local-first architecture — and what that means for you.">
-<meta property="og:url" content="https://drawdy-landing.vercel.app/blog/local-first-architecture">
+<meta property="og:title" content="Fast + Optimized Board">
+<meta property="og:description" content="Speed isn't a feature — it's the foundation. Here's how Drawdy stays fast with thousands of elements on the canvas.">
+<meta property="og:url" content="https://drawdy-landing.vercel.app/blog/fast-optimized-board">
 <meta property="og:site_name" content="Drawdy">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Why We Chose Local-First Architecture">
-<meta name="twitter:description" content="Your data should live on your device by default. Here's why we built Drawdy with a local-first architecture — and what that means for you.">
-<link rel="canonical" href="https://drawdy-landing.vercel.app/blog/local-first-architecture">
+<meta property="og:image" content="https://drawdy-landing.vercel.app/blog/thumbnails/fast-optimized-board.png">
+<meta property="og:image:width" content="819">
+<meta property="og:image:height" content="521">
+<meta name="twitter:image" content="https://drawdy-landing.vercel.app/blog/thumbnails/fast-optimized-board.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fast + Optimized Board">
+<meta name="twitter:description" content="Speed isn't a feature — it's the foundation. Here's how Drawdy stays fast with thousands of elements on the canvas.">
+<link rel="canonical" href="https://drawdy-landing.vercel.app/blog/fast-optimized-board">
 <link rel="alternate" type="application/rss+xml" title="Drawdy Blog" href="/blog/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +31,7 @@
   src:url(https://cdn.jsdelivr.net/fontsource/fonts/google-sans-flex:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
 }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Why We Chose Local-First Architecture","datePublished":"2026-07-15T00:00:00.000Z","author":{"@type":"Person","name":"Alex Kim"},"publisher":{"@type":"Organization","name":"Drawdy"},"description":"Your data should live on your device by default. Here's why we built Drawdy with a local-first architecture — and what that means for you."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Fast + Optimized Board","datePublished":"2026-07-15T00:00:00.000Z","author":{"@type":"Person","name":"Alex Kim"},"publisher":{"@type":"Organization","name":"Drawdy"},"description":"Speed isn't a feature — it's the foundation. Here's how Drawdy stays fast with thousands of elements on the canvas."}</script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -78,21 +82,14 @@ img{display:block;max-width:100%}
   padding:140px 24px 0;
 }
 .article-hero-inner{
-  width:100%;aspect-ratio:16/9;border-radius:var(--radius);
+  width:100%;aspect-ratio:819/521;border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
 .article-hero-inner .thumb-icon{
-  width:80px;height:80px;
+  width:100%;height:100%;
 }
-.grad-1{background:#F4F2E6}
-.grad-2{background:#EBEAF5}
-.grad-3{background:#E4ECF6}
-.grad-4{background:#EDF3E0}
-.grad-5{background:#EAE7F4}
-.grad-6{background:#E2ECF3}
-.grad-7{background:#EDEAD4}
-.grad-8{background:#EBF2E3}
+.grad-1,.grad-2,.grad-3,.grad-4,.grad-5,.grad-6,.grad-7,.grad-8{background:transparent}
 
 /* ---------- Article Layout ---------- */
 .article-header{
@@ -273,15 +270,15 @@ footer a:hover{color:var(--ink)}
 </a>
 
 <div class="article-hero">
-  <div class="article-hero-inner grad-2">
-    <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" fill="white" fill-opacity="0.4" stroke="#8F8FFF" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round"/><rect x="19" y="22" width="10" height="9" rx="2" stroke="#8F8FFF" stroke-width="2.5" stroke-opacity="0.5" stroke-linejoin="round"/><path d="M21,22 L21,19 C21,16.5 22.5,15 24,15 C25.5,15 27,16.5 27,19 L27,22" stroke="#8F8FFF" stroke-width="2.5" stroke-opacity="0.5" stroke-linecap="round"/></svg>
+  <div class="article-hero-inner">
+    <img class="thumb-icon" src="/blog/thumbnails/fast-optimized-board.png" alt="Fast + Optimized Board" loading="lazy"/>
   </div>
 </div>
 
 <article>
   <header class="article-header">
-    <span class="article-cat">Design</span>
-    <h1>Why We Chose Local-First Architecture</h1>
+    <span class="article-cat">Product</span>
+    <h1>Fast + Optimized Board</h1>
     <div class="article-meta">
       <span>Jul 15, 2026</span>
       <span class="sep">&middot;</span>
@@ -292,37 +289,40 @@ footer a:hover{color:var(--ink)}
   </header>
 
   <div class="article-content">
-    <p>When we started building Drawdy, we had a fundamental question to answer: where does user data live?</p>
-<p>The industry default is clear — put everything in the cloud, require sign-up, sync constantly. It’s easier to build, easier to monetize, and easier to lock users in. But it’s not better for the people using the tool.</p>
-<p>We chose a different path.</p>
-<h2>What local-first means</h2>
-<p>Local-first means your boards, diagrams, and work are stored on your device. Not on our servers. Not behind an account wall. On your machine, where you have full control.</p>
-<p>This isn’t just a philosophical stance — it has real consequences:</p>
-<ul>
-<li><strong>Instant startup.</strong> No loading spinners. No “connecting to server.” Open the app, and your work is there.</li>
-<li><strong>Offline by default.</strong> Work on a plane, in a coffee shop with bad wifi, or anywhere else. Your tool shouldn’t care about your internet connection.</li>
-<li><strong>Privacy built in.</strong> We can’t see your data because we don’t have it. There’s nothing to breach, nothing to mine, nothing to sell.</li>
-<li><strong>You own your data.</strong> Export, backup, move, delete — your files, your choice.</li>
-</ul>
-<h2>The technical approach</h2>
-<p>Under the hood, Drawdy uses a CRDT-based data model. CRDTs (Conflict-free Replicated Data Types) allow multiple copies of the same document to be edited independently and then merged without conflicts.</p>
-<p>This is the same technology behind tools like Figma’s multiplayer engine and Linear’s offline support. The key insight is that you can have both local-first storage <em>and</em> real-time collaboration — they’re not mutually exclusive.</p>
-<pre><code class="hljs language-javascript"><span class="hljs-comment">// Simplified: every edit creates a CRDT operation</span>
-<span class="hljs-keyword">const</span> operation = {
-  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;move-node&#x27;</span>,
-  <span class="hljs-attr">nodeId</span>: <span class="hljs-string">&#x27;abc-123&#x27;</span>,
-  <span class="hljs-attr">position</span>: { <span class="hljs-attr">x</span>: <span class="hljs-number">200</span>, <span class="hljs-attr">y</span>: <span class="hljs-number">150</span> },
-  <span class="hljs-attr">timestamp</span>: <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">now</span>(),
-  <span class="hljs-attr">author</span>: peerId,
-};
+    <p>A whiteboard that lags is a whiteboard you stop using. When you’re deep in a system diagram with hundreds of nodes, connections, and annotations, the last thing you need is a tool fighting your momentum.</p>
+<p>Drawdy is built to stay fast — not just on demo boards with 20 sticky notes, but on real-world canvases with thousands of elements.</p>
+<h2>Why speed matters more than features</h2>
+<p>Every tool demo looks smooth. The real test is six months in, when your board has 2,000 nodes, 500 connections, and a dozen embedded images. Most whiteboard tools start choking at that scale. Frame drops, input lag, sluggish zoom — death by a thousand cuts.</p>
+<p>We treat performance as a constraint, not a feature. Every new capability has to pass one test: does the board still feel instant?</p>
+<h2>How we keep it fast</h2>
+<h3>Spatial indexing</h3>
+<p>Not every element needs to be processed every frame. Drawdy uses a spatial index (R-tree) to track what’s on screen and only renders what’s visible. Pan across a massive board and the engine is only touching the elements in your viewport.</p>
+<pre><code class="hljs language-javascript"><span class="hljs-comment">// Only process elements in the current viewport</span>
+<span class="hljs-keyword">const</span> visible = spatialIndex.<span class="hljs-title function_">search</span>({
+  <span class="hljs-attr">minX</span>: viewport.<span class="hljs-property">x</span>,
+  <span class="hljs-attr">minY</span>: viewport.<span class="hljs-property">y</span>,
+  <span class="hljs-attr">maxX</span>: viewport.<span class="hljs-property">x</span> + viewport.<span class="hljs-property">width</span>,
+  <span class="hljs-attr">maxY</span>: viewport.<span class="hljs-property">y</span> + viewport.<span class="hljs-property">height</span>,
+});
 </code></pre>
-<p>When you choose to sync, these operations merge cleanly with edits from other collaborators. No “last write wins.” No data loss.</p>
-<h2>Cloud is optional</h2>
-<p>We’re not anti-cloud. Cloud sync is available for teams who want it. But it’s opt-in, not the default. You turn it on when you’re ready, and you can turn it off whenever you want.</p>
-<p>This is the fundamental difference: most tools are cloud-first with an offline mode bolted on. Drawdy is local-first with cloud available when you need it.</p>
-<h2>The trade-offs</h2>
-<p>We won’t pretend there aren’t trade-offs. Local-first is harder to build. Conflict resolution is genuinely complex. Some features (like real-time cursors) require a network connection by definition.</p>
-<p>But we believe the trade-offs are worth it. Your creative tool should work for you, not the other way around.</p>
+<h3>Canvas rendering, not DOM</h3>
+<p>Each element isn’t a DOM node. Drawdy renders to <code>&lt;canvas&gt;</code>, which means the browser isn’t managing thousands of individual HTML elements. The result: consistent 60fps regardless of board complexity.</p>
+<p>DOM-based whiteboards hit a wall around 500–1,000 elements. Canvas-based rendering pushes that ceiling to tens of thousands.</p>
+<h3>Incremental updates</h3>
+<p>When you move a node, we don’t re-render the entire board. Only the affected region gets redrawn. This “dirty rectangle” approach means the cost of an interaction is proportional to what changed, not the total size of the board.</p>
+<h3>Off-thread processing</h3>
+<p>Heavy operations — layout calculations, export rendering, search indexing — run in Web Workers. The main thread stays free for input handling and rendering, so the board never freezes while something expensive happens in the background.</p>
+<h2>The numbers</h2>
+<p>On a board with 5,000 elements:</p>
+<ul>
+<li><strong>Input latency:</strong> &lt; 8ms (pen-to-screen)</li>
+<li><strong>Pan/zoom:</strong> 60fps sustained</li>
+<li><strong>Cold open:</strong> &lt; 400ms to interactive</li>
+<li><strong>Memory:</strong> ~120MB (vs 400MB+ for DOM-based alternatives)</li>
+</ul>
+<p>These aren’t cherry-picked benchmarks. They’re from real boards created by our beta users.</p>
+<h2>Optimization is ongoing</h2>
+<p>Performance work is never done. We profile regularly, catch regressions in CI, and treat any frame drop as a bug worth investigating. The board should feel like a direct extension of your thinking — and that means zero friction between intent and result.</p>
 
   </div>
 </article>
@@ -340,7 +340,7 @@ footer a:hover{color:var(--ink)}
 
 <footer>
   <a class="logo" href="/" aria-label="Drawdy"><img class="logo-img footer-logo-img" src="/Logo.svg" alt="Drawdy"></a>
-  <span>&copy; 2026 Drawdy</span>
+  <span>&copy; 2026 Drawdy &middot; <a href="/blog/feed.xml">RSS</a></span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>

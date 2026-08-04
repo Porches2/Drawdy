@@ -25,53 +25,27 @@ const md = markdownIt({ html: true, typographer: true, linkify: true }).use(high
 const dateFmt = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
 // ---------------------------------------------------------------------------
-// Icon SVG map (keyed by frontmatter `icon` field)
+// Thumbnail system — PNG images from thumbnails/ directory
+// Naming convention: thumbnails/{slug}.png (819×521)
+// Posts without a PNG get a placeholder with the Drawdy logo
 // ---------------------------------------------------------------------------
-const ICONS = {
-  // Introducing Drawdy — three overlapping canvas frames (lime marker)
-  layers: '<svg class="thumb-icon" viewBox="0 0 48 48" fill="none">'
-    + '<rect x="5" y="6" width="24" height="20" rx="4" fill="white" fill-opacity="0.3" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.22" stroke-linejoin="round"/>'
-    + '<rect x="12" y="13" width="24" height="20" rx="4" fill="white" fill-opacity="0.4" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.35" stroke-linejoin="round"/>'
-    + '<rect x="19" y="20" width="24" height="20" rx="4" fill="white" fill-opacity="0.5" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.5" stroke-linejoin="round"/>'
-    + '</svg>',
-  // Local-first — highlighted circle with lock (purple marker)
-  layout: '<svg class="thumb-icon" viewBox="0 0 48 48" fill="none">'
-    + '<circle cx="24" cy="24" r="18" fill="white" fill-opacity="0.4" stroke="#8F8FFF" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round"/>'
-    + '<rect x="19" y="22" width="10" height="9" rx="2" stroke="#8F8FFF" stroke-width="2.5" stroke-opacity="0.5" stroke-linejoin="round"/>'
-    + '<path d="M21,22 L21,19 C21,16.5 22.5,15 24,15 C25.5,15 27,16.5 27,19 L27,22" stroke="#8F8FFF" stroke-width="2.5" stroke-opacity="0.5" stroke-linecap="round"/>'
-    + '</svg>',
-  // Collaboration — two overlapping highlighted circles (blue marker)
-  users: '<svg class="thumb-icon" viewBox="0 0 48 48" fill="none">'
-    + '<circle cx="18" cy="24" r="14" fill="white" fill-opacity="0.35" stroke="#3D6DF2" stroke-width="4.5" stroke-opacity="0.35" stroke-linecap="round"/>'
-    + '<circle cx="30" cy="24" r="14" fill="white" fill-opacity="0.35" stroke="#3D6DF2" stroke-width="4.5" stroke-opacity="0.5" stroke-linecap="round"/>'
-    + '</svg>',
-  // Excalidraw → Drawdy — nested diamonds (lime marker)
-  bell: '<svg class="thumb-icon" viewBox="0 0 48 48" fill="none">'
-    + '<path d="M24,5 L43,24 L24,43 L5,24Z" fill="white" fill-opacity="0.4" stroke="#A9C41E" stroke-width="4.5" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/>'
-    + '<path d="M24,15 L33,24 L24,33 L15,24Z" fill="none" stroke="#A9C41E" stroke-width="3" stroke-opacity="0.25" stroke-linecap="round" stroke-linejoin="round"/>'
-    + '</svg>',
-  // Plugin API — bold angle brackets (violet marker)
-  code: '<svg class="thumb-icon" viewBox="0 0 48 48" fill="none">'
-    + '<path d="M18,8 L4,24 L18,40" stroke="#8E7BF0" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/>'
-    + '<path d="M30,8 L44,24 L30,40" stroke="#8E7BF0" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/>'
-    + '</svg>',
-  // Hand-drawn UI — wavy marker swoosh (blue marker)
-  pen: '<svg class="thumb-icon" viewBox="0 0 48 48" fill="none">'
-    + '<path d="M4,34 C10,20 16,38 24,24 C32,10 38,28 44,14" stroke="#3D6DF2" stroke-width="5.5" stroke-opacity="0.4" stroke-linecap="round"/>'
-    + '<circle cx="44" cy="14" r="3" fill="#3D6DF2" fill-opacity="0.35"/>'
-    + '</svg>',
-  // Version history — highlighted circle clock (purple marker)
-  clock: '<svg class="thumb-icon" viewBox="0 0 48 48" fill="none">'
-    + '<circle cx="24" cy="24" r="18" fill="white" fill-opacity="0.4" stroke="#8F8FFF" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round"/>'
-    + '<path d="M24,13 L24,24 L33,29" stroke="#8F8FFF" stroke-width="3.5" stroke-opacity="0.5" stroke-linecap="round" stroke-linejoin="round"/>'
-    + '</svg>',
-  // Roadmap — rising trend line (lime marker)
-  check: '<svg class="thumb-icon" viewBox="0 0 48 48" fill="none">'
-    + '<path d="M6,38 C12,38 14,26 20,26 C26,26 28,32 34,28 C38,25 40,14 42,8" stroke="#A9C41E" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round"/>'
-    + '<path d="M36,8 L42,8 L42,14" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/>'
-    + '<circle cx="6" cy="38" r="3" fill="#A9C41E" fill-opacity="0.35"/>'
-    + '</svg>',
-};
+const THUMBNAILS_SRC = path.join(ROOT, 'thumbnails');
+const THUMBNAILS_OUT = path.join(BLOG_DIR, 'thumbnails');
+
+function thumbnailExists(slug) {
+  return fs.existsSync(path.join(THUMBNAILS_SRC, `${slug}.png`));
+}
+
+function thumbHtml(slug, title) {
+  if (thumbnailExists(slug)) {
+    return `<img class="thumb-icon" src="/blog/thumbnails/${slug}.png" alt="${escapeHtml(title)}" loading="lazy"/>`;
+  }
+  // Placeholder — solid muted bg with Drawdy logo mark
+  return `<svg class="thumb-icon" viewBox="0 0 819 521" fill="none">
+<rect width="819" height="521" fill="#F4F2E6"/>
+<text x="410" y="274" text-anchor="middle" fill="#191919" fill-opacity="0.12" font-family="'Google Sans Flex',sans-serif" font-size="60" font-weight="700" letter-spacing="-1">Drawdy</text>
+</svg>`;
+}
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -177,7 +151,7 @@ const NAV_HTML = `<nav id="nav">
 
 const FOOTER_HTML = `<footer>
   <a class="logo" href="/" aria-label="Drawdy"><img class="logo-img footer-logo-img" src="/Logo.svg" alt="Drawdy"></a>
-  <span>&copy; 2026 Drawdy</span>
+  <span>&copy; 2026 Drawdy &middot; <a href="/blog/feed.xml">RSS</a></span>
 </footer>`;
 
 const NAV_JS = `var nav=document.getElementById('nav');
@@ -249,16 +223,33 @@ const REDUCED_MOTION_CSS = `@media(prefers-reduced-motion:reduce){
 // Blog listing page
 // ---------------------------------------------------------------------------
 function renderBlogListing(posts) {
-  const cards = posts.map(p => `
+  const [featured, ...rest] = posts;
+
+  const featuredCard = featured ? `
+  <a class="post-card featured" href="/blog/${featured.slug}" data-category="${featured.category}">
+    <div class="post-thumb">
+      <div class="post-thumb-inner">
+        ${thumbHtml(featured.slug, featured.title)}
+      </div>
+    </div>
+    <div class="featured-body">
+      <span class="post-cat">${categoryLabel(featured.category)}<span class="latest-tag"> &middot; Latest</span></span>
+      <h2 class="post-title">${escapeHtml(featured.title)}</h2>
+      <p class="post-excerpt">${escapeHtml(featured.excerpt)}</p>
+      <span class="post-meta">${formatDate(featured.date)} &middot; ${featured.readingTime} min read</span>
+    </div>
+  </a>` : '';
+
+  const cards = featuredCard + rest.map(p => `
   <a class="post-card" href="/blog/${p.slug}" data-category="${p.category}">
     <div class="post-thumb">
-      <div class="post-thumb-inner grad-${p.gradient}">
-        ${ICONS[p.icon] || ICONS.layers}
+      <div class="post-thumb-inner">
+        ${thumbHtml(p.slug, p.title)}
       </div>
     </div>
     <span class="post-cat">${categoryLabel(p.category)}</span>
     <h3 class="post-title">${escapeHtml(p.title)}</h3>
-    <span class="post-meta">${formatDate(p.date)} &middot; ${escapeHtml(p.author)}</span>
+    <span class="post-meta">${formatDate(p.date)} &middot; ${p.readingTime} min read</span>
   </a>`).join('\n');
 
   return `<!DOCTYPE html>
@@ -279,7 +270,7 @@ ${NAV_CSS}
 /* ---------- Blog Hero ---------- */
 .blog-hero{
   max-width:1080px;margin:0 auto;
-  padding:160px 24px 0;
+  padding:130px 24px 0;
   text-align:center;
 }
 .eyebrow{
@@ -296,6 +287,11 @@ ${NAV_CSS}
 .blog-hero h1 .accent{
   font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-0.01em;
 }
+.hero-underline{position:relative;display:inline-block}
+.hero-underline svg{
+  position:absolute;left:-4%;bottom:-0.1em;width:108%;height:0.26em;
+  display:block;pointer-events:none;
+}
 .blog-hero .sub{font-size:18px;color:var(--muted);max-width:44ch;margin:0 auto 48px}
 
 /* ---------- Category Filters ---------- */
@@ -310,11 +306,11 @@ ${NAV_CSS}
   background:transparent;color:var(--muted);cursor:pointer;
   transition:all .2s;
 }
-.filter-btn:hover{border-color:color-mix(in srgb,var(--lime) 65%,var(--paper));color:var(--ink)}
+.filter-btn:hover{background:rgba(23,23,27,.07);border-color:rgba(23,23,27,.14);color:var(--ink)}
 .filter-btn[data-active="true"]{
-  background:color-mix(in srgb,var(--lime) 32%,var(--paper));
-  border-color:color-mix(in srgb,var(--lime) 65%,var(--paper));
-  color:var(--lime-ink);
+  background:var(--ink);
+  border-color:var(--ink);
+  color:var(--lime);
 }
 
 /* ---------- Post Grid ---------- */
@@ -328,11 +324,12 @@ ${NAV_CSS}
   display:flex;flex-direction:column;
   transition:opacity .35s,transform .35s;
 }
+.post-card:hover .post-thumb{transform:translateY(-6px);box-shadow:0 14px 30px rgba(23,23,27,.10)}
+.post-thumb{transition:transform .3s ease,box-shadow .3s ease;border:1px solid rgba(0,0,0,.1);border-radius:var(--radius)}
 .post-card.hidden{
   opacity:0;transform:translateY(12px);
   pointer-events:none;position:absolute;visibility:hidden;
 }
-.post-card:hover .post-title{text-decoration:underline;text-underline-offset:3px}
 .post-thumb{
   aspect-ratio:16/10;border-radius:var(--radius);
   margin-bottom:18px;overflow:hidden;
@@ -342,16 +339,9 @@ ${NAV_CSS}
   width:100%;height:100%;
   display:flex;align-items:center;justify-content:center;
 }
-.grad-1{background:#F4F2E6}
-.grad-2{background:#EBEAF5}
-.grad-3{background:#E4ECF6}
-.grad-4{background:#EDF3E0}
-.grad-5{background:#EAE7F4}
-.grad-6{background:#E2ECF3}
-.grad-7{background:#EDEAD4}
-.grad-8{background:#EBF2E3}
+.grad-1,.grad-2,.grad-3,.grad-4,.grad-5,.grad-6,.grad-7,.grad-8{background:transparent}
 .thumb-icon{
-  width:56px;height:56px;
+  width:100%;height:100%;
 }
 .post-cat{
   display:inline-block;font-size:12px;font-weight:600;
@@ -361,8 +351,41 @@ ${NAV_CSS}
 .post-title{
   font-size:18px;font-weight:600;letter-spacing:-0.01em;line-height:1.3;
   color:var(--ink);margin-bottom:10px;
+  transition:color .2s;
 }
+.post-card:hover .post-title{color:var(--lime-ink)}
 .post-meta{font-size:13px;color:var(--muted)}
+
+/* ---------- Featured Card ---------- */
+.post-card.featured{
+  grid-column:1/-1;
+  display:grid;grid-template-columns:1.2fr 1fr;
+  gap:44px;align-items:center;
+  margin-bottom:16px;
+}
+.post-card.featured .post-thumb{margin-bottom:0}
+.post-card.featured .post-title{
+  font-size:clamp(22px,2.6vw,30px);letter-spacing:-0.02em;line-height:1.2;
+  margin-bottom:12px;
+}
+.post-excerpt{
+  font-size:15px;line-height:1.6;color:var(--muted);
+  margin-bottom:16px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+
+/* Featured card demotes to a regular card on category tabs */
+.post-grid.filtered .post-card.featured{
+  grid-column:auto;display:flex;flex-direction:column;
+  gap:0;align-items:stretch;margin-bottom:0;
+}
+.post-grid.filtered .post-card.featured .featured-body{display:contents}
+.post-grid.filtered .post-card.featured .post-thumb{margin-bottom:18px}
+.post-grid.filtered .post-card.featured .post-title{
+  font-size:18px;letter-spacing:-0.01em;line-height:1.3;margin-bottom:10px;
+}
+.post-grid.filtered .post-card.featured .post-excerpt{display:none}
+.post-grid.filtered .post-card.featured .latest-tag{display:none}
 
 /* ---------- Footer ---------- */
 ${FOOTER_CSS}
@@ -374,9 +397,10 @@ ${REDUCED_MOTION_CSS}
 @media(max-width:820px){
   #nav{padding:14px 20px}
   .nav-links{display:none}
-  .blog-hero{padding-top:120px}
+  .blog-hero{padding-top:96px}
   .blog-hero h1{font-size:clamp(30px,7vw,48px)}
   .post-grid{grid-template-columns:repeat(2,1fr);gap:36px 24px;padding:0 20px 80px}
+  .post-card.featured{grid-template-columns:1fr;gap:18px;margin-bottom:8px}
   footer{padding:22px 20px}
 }
 @media(max-width:540px){
@@ -392,7 +416,7 @@ ${NAV_HTML}
 
 <section class="blog-hero">
   <span class="eyebrow">From the team</span>
-  <h1>The Drawdy <span class="accent">Blog</span></h1>
+  <h1>The Drawdy <span class="accent hero-underline">Blog<svg viewBox="0 0 340 20" preserveAspectRatio="none" fill="none" aria-hidden="true"><path id="hero-lime" d="M2 14C88 3 262 1 338 8" stroke="#CDFF00" stroke-width="14" stroke-linecap="round"/></svg></span></h1>
   <p class="sub">Updates, announcements, and design thinking from the team building the infinite canvas for builders.</p>
   <div class="filters">
     <button class="filter-btn" data-filter="all" data-active="true">All</button>
@@ -427,14 +451,27 @@ ${FOOTER_HTML}
       btns.forEach(function(b){b.setAttribute('data-active','false')});
       btn.setAttribute('data-active','true');
 
+      var grid=document.querySelector('.post-grid');
+      if(grid){grid.classList.toggle('filtered',filter!=='all');}
+
+      var visible=[];
       cards.forEach(function(card){
         var cat=card.getAttribute('data-category');
         if(filter==='all'||cat===filter){
           card.classList.remove('hidden');
+          visible.push(card);
         }else{
           card.classList.add('hidden');
         }
       });
+
+      /* Re-enter animation for the newly visible set */
+      if(window.gsap&&visible.length){
+        gsap.fromTo(visible,
+          {opacity:0,y:24},
+          {opacity:1,y:0,duration:.55,ease:'power2.out',stagger:.07,overwrite:true}
+        );
+      }
     });
   });
 
@@ -445,6 +482,14 @@ ${FOOTER_HTML}
   var heroEls='.blog-hero .eyebrow, .blog-hero h1, .blog-hero .sub';
   gsap.set(heroEls,{opacity:0,y:26});
   gsap.to(heroEls,{opacity:1,y:0,duration:.9,ease:'power3.out',stagger:.12,delay:.15});
+
+  /* Hero underline draw-on */
+  var heroLime=document.getElementById('hero-lime');
+  if(heroLime){
+    var hlLen=heroLime.getTotalLength();
+    gsap.set(heroLime,{strokeDasharray:hlLen,strokeDashoffset:hlLen});
+    gsap.to(heroLime,{strokeDashoffset:0,duration:.7,ease:'power2.out',delay:.65});
+  }
 
   /* Filters */
   gsap.set('.filters',{opacity:0,y:14});
@@ -485,6 +530,15 @@ function renderPostPage(post, prevPost, nextPost) {
   </a>`
     : '';
 
+  const hasThumb = thumbnailExists(post.slug);
+  const ogImageTags = hasThumb
+    ? `<meta property="og:image" content="${SITE.url}/blog/thumbnails/${post.slug}.png">
+<meta property="og:image:width" content="819">
+<meta property="og:image:height" content="521">
+<meta name="twitter:image" content="${SITE.url}/blog/thumbnails/${post.slug}.png">
+`
+    : '';
+
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -507,7 +561,7 @@ function renderPostPage(post, prevPost, nextPost) {
 <meta property="og:description" content="${escapeHtml(post.excerpt)}">
 <meta property="og:url" content="${SITE.url}/blog/${post.slug}">
 <meta property="og:site_name" content="Drawdy">
-<meta name="twitter:card" content="summary">
+${ogImageTags}<meta name="twitter:card" content="${hasThumb ? 'summary_large_image' : 'summary'}">
 <meta name="twitter:title" content="${escapeHtml(post.title)}">
 <meta name="twitter:description" content="${escapeHtml(post.excerpt)}">
 <link rel="canonical" href="${SITE.url}/blog/${post.slug}">
@@ -526,21 +580,14 @@ ${NAV_CSS}
   padding:140px 24px 0;
 }
 .article-hero-inner{
-  width:100%;aspect-ratio:16/9;border-radius:var(--radius);
+  width:100%;aspect-ratio:819/521;border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
 .article-hero-inner .thumb-icon{
-  width:80px;height:80px;
+  width:100%;height:100%;
 }
-.grad-1{background:#F4F2E6}
-.grad-2{background:#EBEAF5}
-.grad-3{background:#E4ECF6}
-.grad-4{background:#EDF3E0}
-.grad-5{background:#EAE7F4}
-.grad-6{background:#E2ECF3}
-.grad-7{background:#EDEAD4}
-.grad-8{background:#EBF2E3}
+.grad-1,.grad-2,.grad-3,.grad-4,.grad-5,.grad-6,.grad-7,.grad-8{background:transparent}
 
 /* ---------- Article Layout ---------- */
 .article-header{
@@ -698,8 +745,8 @@ ${NAV_HTML}
 </a>
 
 <div class="article-hero">
-  <div class="article-hero-inner grad-${post.gradient}">
-    ${ICONS[post.icon] || ICONS.layers}
+  <div class="article-hero-inner">
+    ${thumbHtml(post.slug, post.title)}
   </div>
 </div>
 
@@ -789,6 +836,16 @@ function copyImages() {
   console.log(`  Copied ${files.length} image(s)`);
 }
 
+function copyThumbnails() {
+  if (!fs.existsSync(THUMBNAILS_SRC)) return;
+  mkdirp(THUMBNAILS_OUT);
+  const files = fs.readdirSync(THUMBNAILS_SRC).filter(f => /\.(png|jpg|jpeg|webp)$/i.test(f));
+  for (const file of files) {
+    fs.copyFileSync(path.join(THUMBNAILS_SRC, file), path.join(THUMBNAILS_OUT, file));
+  }
+  if (files.length) console.log(`  Copied ${files.length} thumbnail(s)`);
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -829,6 +886,9 @@ function main() {
 
   // Copy images
   copyImages();
+
+  // Copy thumbnails
+  copyThumbnails();
 
   const elapsed = Date.now() - start;
   console.log(`Done. Built ${posts.length} posts in ${elapsed}ms.`);

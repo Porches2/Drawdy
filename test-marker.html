@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlighter Marker Texture — Round 2</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #FAFAF5; font-family: -apple-system, sans-serif; padding: 40px 40px 80px; }
+h1 { font-size: 28px; margin-bottom: 6px; color: #17171B; }
+p.sub { color: #6F6F68; margin-bottom: 40px; font-size: 15px; }
+.card { background: #fff; border: 1px solid #E8E8DF; border-radius: 16px; padding: 24px 28px; margin-bottom: 28px; overflow: hidden; }
+.card h2 { font-size: 17px; margin-bottom: 2px; color: #17171B; }
+.card p { font-size: 13px; color: #6F6F68; margin-bottom: 12px; line-height: 1.4; }
+svg { width: 100%; height: 120px; display: block; }
+.multiply svg { mix-blend-mode: multiply; }
+.tag { display: inline-block; background: #CDFF00; color: #333; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<h1>Highlighter Marker — Round 2</h1>
+<p class="sub">Focused on realism: multiply blend, high transparency, noise masks, dry-brush edges. Compare against V0 (flat).</p>
+
+<!-- V0: Reference flat -->
+<div class="card">
+  <h2>V0 — Flat reference</h2>
+  <p>No filter, no blend. Plain stroke for comparison.</p>
+  <svg viewBox="0 0 800 120" fill="none">
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF9F43" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" opacity="0.7" fill="none"/>
+  </svg>
+</div>
+
+<!-- A: Multiply blend (the key insight) -->
+<div class="card multiply">
+  <h2>A — Multiply blend mode <span class="tag">KEY</span></h2>
+  <p>mix-blend-mode: multiply on the SVG. This is how real highlighter ink interacts with paper — it darkens what's underneath instead of sitting on top. Very translucent.</p>
+  <svg viewBox="0 0 800 120" fill="none">
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF9F43" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.5" fill="none"/>
+  </svg>
+</div>
+
+<!-- B: Multiply + displacement texture -->
+<div class="card multiply">
+  <h2>B — Multiply + rough edges</h2>
+  <p>Multiply blend + displacement for organic wobbly edges. Like drawing quickly with a chisel-tip highlighter.</p>
+  <svg viewBox="0 0 800 120" fill="none">
+    <defs>
+      <filter id="vb" x="-5%" y="-12%" width="110%" height="124%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" seed="31" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF9F43" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.5" filter="url(#vb)" fill="none"/>
+  </svg>
+</div>
+
+<!-- C: Multiply + streaky alpha + displacement -->
+<div class="card multiply">
+  <h2>C — Multiply + rough + streaky</h2>
+  <p>Multiply blend + edge displacement + strong streaky alpha mask. Full marker simulation with paper interaction.</p>
+  <svg viewBox="0 0 800 120" fill="none">
+    <defs>
+      <filter id="vc" x="-5%" y="-12%" width="110%" height="124%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="33" result="en"/>
+        <feDisplacementMap in="SourceGraphic" in2="en" scale="4" xChannelSelector="R" yChannelSelector="G" result="rg"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.05 0.22" numOctaves="4" seed="35" result="sn"/>
+        <feColorMatrix in="sn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.7 0.7 0.7 0 0.4" result="am"/>
+        <feComposite in="rg" in2="am" operator="in"/>
+      </filter>
+    </defs>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF9F43" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.55" filter="url(#vc)" fill="none"/>
+  </svg>
+</div>
+
+<!-- D: Multiply + dual layer + streaks -->
+<div class="card multiply">
+  <h2>D — Multiply + dual layer glow + streaky core</h2>
+  <p>Wide soft under-glow + textured core, all in multiply. Glow simulates ink bleed into paper fibers.</p>
+  <svg viewBox="0 0 800 120" fill="none">
+    <defs>
+      <filter id="vd" x="-5%" y="-12%" width="110%" height="124%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="3" seed="37" result="en"/>
+        <feDisplacementMap in="SourceGraphic" in2="en" scale="4" xChannelSelector="R" yChannelSelector="G" result="rg"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.05 0.2" numOctaves="4" seed="39" result="sn"/>
+        <feColorMatrix in="sn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.65 0.65 0.65 0 0.42" result="am"/>
+        <feComposite in="rg" in2="am" operator="in"/>
+      </filter>
+    </defs>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF9F43" stroke-width="44" stroke-linecap="round" stroke-linejoin="round" opacity="0.15" fill="none"/>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF9F43" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" opacity="0.55" filter="url(#vd)" fill="none"/>
+  </svg>
+</div>
+
+<!-- E: Chisel tip simulation — flat rect cross-section -->
+<div class="card multiply">
+  <h2>E — Chisel tip (flat edge) + multiply</h2>
+  <p>Square linecap instead of round, simulating a chisel-tip Stabilo highlighter. Multiply blend. Wider, flatter stroke.</p>
+  <svg viewBox="0 0 800 120" fill="none">
+    <defs>
+      <filter id="ve" x="-5%" y="-12%" width="110%" height="124%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="41" result="n"/>
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G" result="rg"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.04 0.18" numOctaves="3" seed="43" result="sn"/>
+        <feColorMatrix in="sn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.5 0.5 0.5 0 0.55" result="am"/>
+        <feComposite in="rg" in2="am" operator="in"/>
+      </filter>
+    </defs>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF9F43" stroke-width="34" stroke-linecap="butt" stroke-linejoin="bevel" opacity="0.45" filter="url(#ve)" fill="none"/>
+  </svg>
+</div>
+
+<!-- F: Dry highlighter — high-contrast streaks, lots of gaps -->
+<div class="card multiply">
+  <h2>F — Dry highlighter (running out of ink)</h2>
+  <p>Very high-contrast alpha mask with low minimum opacity. Creates visible gaps and dry patches like a nearly-empty marker.</p>
+  <svg viewBox="0 0 800 120" fill="none">
+    <defs>
+      <filter id="vf" x="-5%" y="-12%" width="110%" height="124%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="3" seed="45" result="en"/>
+        <feDisplacementMap in="SourceGraphic" in2="en" scale="5" xChannelSelector="R" yChannelSelector="G" result="rg"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.08 0.35" numOctaves="5" seed="47" result="sn"/>
+        <feColorMatrix in="sn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  1.2 1.2 1.2 0 0.1" result="am"/>
+        <feComposite in="rg" in2="am" operator="in"/>
+      </filter>
+    </defs>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF9F43" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.7" filter="url(#vf)" fill="none"/>
+  </svg>
+</div>
+
+<!-- G: Paper grain texture interaction -->
+<div class="card multiply">
+  <h2>G — Paper grain interaction</h2>
+  <p>Fine-grain high-frequency noise simulates paper texture showing through the ink. Like highlighter on textured sketchbook paper.</p>
+  <svg viewBox="0 0 800 120" fill="none">
+    <defs>
+      <filter id="vg" x="-4%" y="-10%" width="108%" height="120%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="49" result="en"/>
+        <feDisplacementMap in="SourceGraphic" in2="en" scale="3" xChannelSelector="R" yChannelSelector="G" result="rg"/>
+        <!-- fine paper grain -->
+        <feTurbulence type="turbulence" baseFrequency="0.5 0.5" numOctaves="2" seed="51" result="grain"/>
+        <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.3 0.3 0.3 0 0.75" result="grainAlpha"/>
+        <feComposite in="rg" in2="grainAlpha" operator="in"/>
+      </filter>
+    </defs>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF9F43" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.6" filter="url(#vg)" fill="none"/>
+  </svg>
+</div>
+
+<!-- H: Paper grain + streaks combined -->
+<div class="card multiply">
+  <h2>H — Paper grain + directional streaks</h2>
+  <p>Two noise layers multiplied: fine paper grain + directional fiber streaks. Most physically accurate simulation.</p>
+  <svg viewBox="0 0 800 120" fill="none">
+    <defs>
+      <filter id="vh" x="-5%" y="-12%" width="110%" height="124%" color-interpolation-filters="sRGB">
+        <!-- edge roughness -->
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="53" result="edgeN"/>
+        <feDisplacementMap in="SourceGraphic" in2="edgeN" scale="4" xChannelSelector="R" yChannelSelector="G" result="rough"/>
+        <!-- directional streaks (marker fibers) -->
+        <feTurbulence type="fractalNoise" baseFrequency="0.04 0.2" numOctaves="3" seed="55" result="streakN"/>
+        <feColorMatrix in="streakN" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.5 0.5 0.5 0 0.55" result="streakA"/>
+        <!-- paper grain (fine noise) -->
+        <feTurbulence type="turbulence" baseFrequency="0.6 0.6" numOctaves="2" seed="57" result="paperN"/>
+        <feColorMatrix in="paperN" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.25 0.25 0.25 0 0.8" result="paperA"/>
+        <!-- multiply both alpha masks together -->
+        <feComposite in="streakA" in2="paperA" operator="arithmetic" k1="1" k2="0" k3="0" k4="0" result="combinedA"/>
+        <!-- apply to roughened graphic -->
+        <feComposite in="rough" in2="combinedA" operator="in"/>
+      </filter>
+    </defs>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF9F43" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.6" filter="url(#vh)" fill="none"/>
+  </svg>
+</div>
+
+<!-- I: Neon/saturated highlighter (brighter color, more opaque edges) -->
+<div class="card multiply">
+  <h2>I — Saturated neon highlighter</h2>
+  <p>Brighter/more saturated orange, higher opacity, triple-layer with strong streaks. Like a fresh Stabilo Boss.</p>
+  <svg viewBox="0 0 800 120" fill="none">
+    <defs>
+      <filter id="vi" x="-5%" y="-12%" width="110%" height="124%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="59" result="en"/>
+        <feDisplacementMap in="SourceGraphic" in2="en" scale="4" xChannelSelector="R" yChannelSelector="G" result="rg"/>
+        <feTurbulence type="fractalNoise" baseFrequency="0.045 0.2" numOctaves="4" seed="61" result="sn"/>
+        <feColorMatrix in="sn" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0.55 0.55 0.55 0 0.5" result="am"/>
+        <feComposite in="rg" in2="am" operator="in"/>
+      </filter>
+    </defs>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FFB347" stroke-width="46" stroke-linecap="round" stroke-linejoin="round" opacity="0.18" fill="none"/>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF8C00" stroke-width="30" stroke-linecap="round" stroke-linejoin="round" opacity="0.5" filter="url(#vi)" fill="none"/>
+    <path d="M10 100 C200 100, 200 20, 400 20 S600 100, 790 20" stroke="#FF8C00" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.35" fill="none"/>
+  </svg>
+</div>
+
+</body>
+</html>

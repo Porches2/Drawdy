@@ -10,7 +10,11 @@
 <meta property="og:description" content="Excalidraw changed how we think about whiteboards. Here's how Drawdy builds on that foundation — and where it goes further.">
 <meta property="og:url" content="https://drawdy-landing.vercel.app/blog/excalidraw-to-drawdy">
 <meta property="og:site_name" content="Drawdy">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://drawdy-landing.vercel.app/blog/thumbnails/excalidraw-to-drawdy.png">
+<meta property="og:image:width" content="819">
+<meta property="og:image:height" content="521">
+<meta name="twitter:image" content="https://drawdy-landing.vercel.app/blog/thumbnails/excalidraw-to-drawdy.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="From Excalidraw to Drawdy: What's Different">
 <meta name="twitter:description" content="Excalidraw changed how we think about whiteboards. Here's how Drawdy builds on that foundation — and where it goes further.">
 <link rel="canonical" href="https://drawdy-landing.vercel.app/blog/excalidraw-to-drawdy">
@@ -78,21 +82,14 @@ img{display:block;max-width:100%}
   padding:140px 24px 0;
 }
 .article-hero-inner{
-  width:100%;aspect-ratio:16/9;border-radius:var(--radius);
+  width:100%;aspect-ratio:819/521;border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
 .article-hero-inner .thumb-icon{
-  width:80px;height:80px;
+  width:100%;height:100%;
 }
-.grad-1{background:#F4F2E6}
-.grad-2{background:#EBEAF5}
-.grad-3{background:#E4ECF6}
-.grad-4{background:#EDF3E0}
-.grad-5{background:#EAE7F4}
-.grad-6{background:#E2ECF3}
-.grad-7{background:#EDEAD4}
-.grad-8{background:#EBF2E3}
+.grad-1,.grad-2,.grad-3,.grad-4,.grad-5,.grad-6,.grad-7,.grad-8{background:transparent}
 
 /* ---------- Article Layout ---------- */
 .article-header{
@@ -273,8 +270,8 @@ footer a:hover{color:var(--ink)}
 </a>
 
 <div class="article-hero">
-  <div class="article-hero-inner grad-4">
-    <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><path d="M24,5 L43,24 L24,43 L5,24Z" fill="white" fill-opacity="0.4" stroke="#A9C41E" stroke-width="4.5" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/><path d="M24,15 L33,24 L24,33 L15,24Z" fill="none" stroke="#A9C41E" stroke-width="3" stroke-opacity="0.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div class="article-hero-inner">
+    <img class="thumb-icon" src="/blog/thumbnails/excalidraw-to-drawdy.png" alt="From Excalidraw to Drawdy: What's Different" loading="lazy"/>
   </div>
 </div>
 
@@ -308,7 +305,7 @@ footer a:hover{color:var(--ink)}
 <p>Excalidraw stores boards in browser localStorage or exports to files. Drawdy uses a CRDT-based local store with optional cloud sync. Your data persists across sessions, syncs across devices when you want, and works offline by default.</p>
 <h3>Plugin ecosystem</h3>
 <p>Drawdy ships with a plugin API from day one. Custom node types, integrations with external tools, workflow automations — the canvas is a platform, not just a drawing surface.</p>
-<h3>Individual post pages (like this one)</h3>
+<h3>A product, not just a tool</h3>
 <p>Excalidraw is a tool; Drawdy is building a product. That means a landing page, blog, documentation, community, and a clear roadmap. We’re here for the long term.</p>
 <h2>Should you switch?</h2>
 <p>If Excalidraw does everything you need, keep using it. It’s a great tool.</p>
@@ -331,7 +328,7 @@ footer a:hover{color:var(--ink)}
 
 <footer>
   <a class="logo" href="/" aria-label="Drawdy"><img class="logo-img footer-logo-img" src="/Logo.svg" alt="Drawdy"></a>
-  <span>&copy; 2026 Drawdy</span>
+  <span>&copy; 2026 Drawdy &middot; <a href="/blog/feed.xml">RSS</a></span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>

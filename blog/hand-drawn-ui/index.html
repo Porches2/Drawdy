@@ -10,7 +10,11 @@
 <meta property="og:description" content="Why Drawdy looks sketchy on purpose — and how hand-drawn aesthetics change the way people think and collaborate.">
 <meta property="og:url" content="https://drawdy-landing.vercel.app/blog/hand-drawn-ui">
 <meta property="og:site_name" content="Drawdy">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://drawdy-landing.vercel.app/blog/thumbnails/hand-drawn-ui.png">
+<meta property="og:image:width" content="819">
+<meta property="og:image:height" content="521">
+<meta name="twitter:image" content="https://drawdy-landing.vercel.app/blog/thumbnails/hand-drawn-ui.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Hand-Drawn UI: The Design Philosophy Behind Drawdy">
 <meta name="twitter:description" content="Why Drawdy looks sketchy on purpose — and how hand-drawn aesthetics change the way people think and collaborate.">
 <link rel="canonical" href="https://drawdy-landing.vercel.app/blog/hand-drawn-ui">
@@ -78,21 +82,14 @@ img{display:block;max-width:100%}
   padding:140px 24px 0;
 }
 .article-hero-inner{
-  width:100%;aspect-ratio:16/9;border-radius:var(--radius);
+  width:100%;aspect-ratio:819/521;border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
 .article-hero-inner .thumb-icon{
-  width:80px;height:80px;
+  width:100%;height:100%;
 }
-.grad-1{background:#F4F2E6}
-.grad-2{background:#EBEAF5}
-.grad-3{background:#E4ECF6}
-.grad-4{background:#EDF3E0}
-.grad-5{background:#EAE7F4}
-.grad-6{background:#E2ECF3}
-.grad-7{background:#EDEAD4}
-.grad-8{background:#EBF2E3}
+.grad-1,.grad-2,.grad-3,.grad-4,.grad-5,.grad-6,.grad-7,.grad-8{background:transparent}
 
 /* ---------- Article Layout ---------- */
 .article-header{
@@ -273,8 +270,8 @@ footer a:hover{color:var(--ink)}
 </a>
 
 <div class="article-hero">
-  <div class="article-hero-inner grad-6">
-    <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><path d="M4,34 C10,20 16,38 24,24 C32,10 38,28 44,14" stroke="#3D6DF2" stroke-width="5.5" stroke-opacity="0.4" stroke-linecap="round"/><circle cx="44" cy="14" r="3" fill="#3D6DF2" fill-opacity="0.35"/></svg>
+  <div class="article-hero-inner">
+    <img class="thumb-icon" src="/blog/thumbnails/hand-drawn-ui.png" alt="Hand-Drawn UI: The Design Philosophy Behind Drawdy" loading="lazy"/>
   </div>
 </div>
 
@@ -338,7 +335,7 @@ footer a:hover{color:var(--ink)}
 
 <footer>
   <a class="logo" href="/" aria-label="Drawdy"><img class="logo-img footer-logo-img" src="/Logo.svg" alt="Drawdy"></a>
-  <span>&copy; 2026 Drawdy</span>
+  <span>&copy; 2026 Drawdy &middot; <a href="/blog/feed.xml">RSS</a></span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>

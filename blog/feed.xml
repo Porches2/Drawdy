@@ -5,7 +5,7 @@
     <link>https://drawdy-landing.vercel.app/blog</link>
     <description>Updates, announcements, and design thinking from the Drawdy team.</description>
     <language>en</language>
-    <lastBuildDate>Mon, 27 Jul 2026 05:51:35 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 04 Aug 2026 04:10:39 GMT</lastBuildDate>
     <atom:link href="https://drawdy-landing.vercel.app/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Introducing Drawdy: The Infinite Canvas for Builders</title>
@@ -15,11 +15,11 @@
       <description>Meet Drawdy — the whiteboard that thinks like code. An infinite canvas designed for system thinkers, architects, and builders.</description>
     </item>
     <item>
-      <title>Why We Chose Local-First Architecture</title>
-      <link>https://drawdy-landing.vercel.app/blog/local-first-architecture</link>
-      <guid>https://drawdy-landing.vercel.app/blog/local-first-architecture</guid>
+      <title>Fast + Optimized Board</title>
+      <link>https://drawdy-landing.vercel.app/blog/fast-optimized-board</link>
+      <guid>https://drawdy-landing.vercel.app/blog/fast-optimized-board</guid>
       <pubDate>Wed, 15 Jul 2026 00:00:00 GMT</pubDate>
-      <description>Your data should live on your device by default. Here&apos;s why we built Drawdy with a local-first architecture — and what that means for you.</description>
+      <description>Speed isn&apos;t a feature — it&apos;s the foundation. Here&apos;s how Drawdy stays fast with thousands of elements on the canvas.</description>
     </item>
     <item>
       <title>Real-Time Collaboration Without Compromise</title>

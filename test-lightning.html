@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lightning Bolt Variations — Drawdy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+@font-face{
+  font-family:'Google Sans Flex';
+  font-style:normal;
+  font-display:swap;
+  font-weight:1 1000;
+  src:url(https://cdn.jsdelivr.net/fontsource/fonts/google-sans-flex:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
+}
+:root{
+  --paper:#FAFAF5;
+  --ink:#17171B;
+  --muted:#6F6F68;
+  --hairline:#E8E8DF;
+  --lime:#CDFF00;
+  --lime-ink:#566B00;
+  --blue:#3D6DF2;
+  --violet:#8E7BF0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Google Sans Flex',system-ui,sans-serif;
+  background:var(--paper);color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  padding:60px 40px 120px;
+}
+::selection{background:var(--lime);color:var(--ink)}
+h1{font-size:32px;font-weight:600;letter-spacing:-0.03em;margin-bottom:8px}
+.sub{color:var(--muted);font-size:15px;margin-bottom:56px}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:40px;
+}
+.card{
+  border:1px solid var(--hairline);
+  border-radius:18px;
+  background:#fff;
+  padding:36px 32px 28px;
+  position:relative;
+}
+.card-label{
+  position:absolute;top:14px;left:20px;
+  font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted);
+}
+.card-heading{
+  font-size:clamp(28px,3.6vw,44px);
+  font-weight:600;
+  letter-spacing:-0.03em;
+  line-height:1.12;
+  margin-bottom:20px;
+  display:flex;
+  align-items:baseline;
+  flex-wrap:wrap;
+  gap:0;
+}
+.card-heading .accent{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-weight:400;
+}
+.card-heading .mark{
+  position:relative;z-index:0;
+}
+.card-heading .mark::before{
+  content:"";position:absolute;z-index:-1;
+  left:-0.1em;right:-0.1em;bottom:0.04em;height:0.6em;
+  background:#5462FF;opacity:0.5;
+  border-radius:3px;transform:rotate(-1.4deg);
+}
+.lightning-svg{
+  display:inline-block;
+  overflow:visible;
+  flex-shrink:0;
+}
+.replay-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:inherit;font-size:13px;font-weight:500;
+  color:var(--muted);background:none;border:1px solid var(--hairline);
+  padding:7px 14px;border-radius:100px;cursor:pointer;
+  transition:border-color .2s, color .2s;
+}
+.replay-btn:hover{border-color:var(--ink);color:var(--ink)}
+.card-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:4px;
+}
+.card-desc{font-size:13px;color:var(--muted);max-width:32ch}
+
+/* V3 glow + flash animations */
+@keyframes bolt-glow{
+  0%{filter:drop-shadow(0 0 0 transparent)}
+  25%{filter:drop-shadow(0 0 16px #CDFF00) drop-shadow(0 0 40px rgba(205,255,0,0.4))}
+  100%{filter:drop-shadow(0 0 0 transparent)}
+}
+@keyframes bolt-flash{
+  0%{opacity:0}
+  20%{opacity:0.35}
+  100%{opacity:0}
+}
+@keyframes bolt-bounce{
+  0%{transform:scale(1)}
+  30%{transform:scale(1.08)}
+  60%{transform:scale(0.97)}
+  100%{transform:scale(1)}
+}
+.lightning-svg.glow{animation:bolt-glow 0.7s ease-out, bolt-bounce 0.5s ease-out}
+.bolt-fill{pointer-events:none}
+.bolt-fill.flash{animation:bolt-flash 0.45s ease-out forwards}
+</style>
+</head>
+<body>
+
+<h1>Lightning bolt variations</h1>
+<p class="sub">Click "Replay" to see each draw-in animation. Pick the one that hits hardest.</p>
+
+<div class="grid">
+
+<!-- V1: Classic clean zigzag -->
+<div class="card" data-v="1">
+  <span class="card-label">V1</span>
+  <div class="card-heading">
+    Built for speed.&nbsp;
+    <svg class="lightning-svg" viewBox="0 0 30 48" width="22" height="36" aria-hidden="true">
+      <path class="bolt" d="M22 2L10 20h9L7 46" fill="none" stroke="#CDFF00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="accent mark">Made for flow.</span>
+  </div>
+  <div class="card-meta">
+    <span class="card-desc">Classic clean zigzag — minimal, sharp</span>
+    <button class="replay-btn" onclick="replay(this)">&#8635; Replay</button>
+  </div>
+</div>
+
+<!-- V2: Thick chunky bolt -->
+<div class="card" data-v="2">
+  <span class="card-label">V2</span>
+  <div class="card-heading">
+    Built for speed.&nbsp;
+    <svg class="lightning-svg" viewBox="0 0 36 52" width="25" height="38" aria-hidden="true">
+      <path class="bolt" d="M28 2L12 22h12L4 50" fill="none" stroke="#CDFF00" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="accent mark">Made for flow.</span>
+  </div>
+  <div class="card-meta">
+    <span class="card-desc">Thick chunky bolt — heavier weight, more presence</span>
+    <button class="replay-btn" onclick="replay(this)">&#8635; Replay</button>
+  </div>
+</div>
+
+<!-- V3: Outline bolt + glow flash -->
+<div class="card" data-v="3">
+  <span class="card-label">V3</span>
+  <div class="card-heading">
+    Built for speed.&nbsp;
+    <svg class="lightning-svg" viewBox="-4 -4 66 98" width="42" height="58" aria-hidden="true">
+      <path class="bolt-fill" d="M40 0L0 40L26 38L14 90L58 54L32 56Z" fill="#CDFF00" opacity="0"/>
+      <path class="bolt" d="M40 0L0 40L26 38L14 90L58 54L32 56Z" fill="none" stroke="#CDFF00" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="accent mark">Made for flow.</span>
+  </div>
+  <div class="card-meta">
+    <span class="card-desc">Outline bolt — draw + glow flash + bounce</span>
+    <button class="replay-btn" onclick="replay(this)">&#8635; Replay</button>
+  </div>
+</div>
+
+<!-- V4: Curved organic -->
+<div class="card" data-v="4">
+  <span class="card-label">V4</span>
+  <div class="card-heading">
+    Built for speed.&nbsp;
+    <svg class="lightning-svg" viewBox="0 0 32 52" width="22" height="38" aria-hidden="true">
+      <path class="bolt" d="M24 2C20 10 14 14 12 20h8C18 28 10 40 6 50" fill="none" stroke="#CDFF00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="accent mark">Made for flow.</span>
+  </div>
+  <div class="card-meta">
+    <span class="card-desc">Curved organic — flowing, hand-drawn energy</span>
+    <button class="replay-btn" onclick="replay(this)">&#8635; Replay</button>
+  </div>
+</div>
+
+<!-- V5: Forked lightning (main + branch) -->
+<div class="card" data-v="5">
+  <span class="card-label">V5</span>
+  <div class="card-heading">
+    Built for speed.&nbsp;
+    <svg class="lightning-svg" viewBox="0 0 38 52" width="26" height="38" aria-hidden="true">
+      <path class="bolt" d="M24 2L11 20h10L5 50" fill="none" stroke="#CDFF00" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="bolt bolt-branch" d="M15 28L28 38" fill="none" stroke="#CDFF00" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+    </svg>
+    <span class="accent mark">Made for flow.</span>
+  </div>
+  <div class="card-meta">
+    <span class="card-desc">Forked — main strike + side branch</span>
+    <button class="replay-btn" onclick="replay(this)">&#8635; Replay</button>
+  </div>
+</div>
+
+<!-- V6: Double strike -->
+<div class="card" data-v="6">
+  <span class="card-label">V6</span>
+  <div class="card-heading">
+    Built for speed.&nbsp;
+    <svg class="lightning-svg" viewBox="0 0 40 52" width="28" height="38" aria-hidden="true">
+      <path class="bolt" d="M22 2L10 22h8L6 50" fill="none" stroke="#CDFF00" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="bolt" d="M32 6L20 26h8L16 48" fill="none" stroke="#CDFF00" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+    </svg>
+    <span class="accent mark">Made for flow.</span>
+  </div>
+  <div class="card-meta">
+    <span class="card-desc">Double strike — echo/afterimage effect</span>
+    <button class="replay-btn" onclick="replay(this)">&#8635; Replay</button>
+  </div>
+</div>
+
+<!-- V7: Compact geometric -->
+<div class="card" data-v="7">
+  <span class="card-label">V7</span>
+  <div class="card-heading">
+    Built for speed.&nbsp;
+    <svg class="lightning-svg" viewBox="0 0 28 44" width="20" height="34" aria-hidden="true">
+      <path class="bolt" d="M20 2L6 22h16L8 42" fill="none" stroke="#CDFF00" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="accent mark">Made for flow.</span>
+  </div>
+  <div class="card-meta">
+    <span class="card-desc">Compact geometric — tight, punchy, symmetrical</span>
+    <button class="replay-btn" onclick="replay(this)">&#8635; Replay</button>
+  </div>
+</div>
+
+<!-- V8: Wobbly hand-drawn -->
+<div class="card" data-v="8">
+  <span class="card-label">V8</span>
+  <div class="card-heading">
+    Built for speed.&nbsp;
+    <svg class="lightning-svg" viewBox="0 0 34 52" width="23" height="38" aria-hidden="true">
+      <path class="bolt" d="M23 3C21 8 17 12 13 18Q11 21 12 22C14 22 17 21 20 21Q22 21 21 23C17 32 11 40 7 49" fill="none" stroke="#CDFF00" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="accent mark">Made for flow.</span>
+  </div>
+  <div class="card-meta">
+    <span class="card-desc">Wobbly hand-drawn — sketchy, organic, imperfect</span>
+    <button class="replay-btn" onclick="replay(this)">&#8635; Replay</button>
+  </div>
+</div>
+
+<!-- V9: Aggressive slash -->
+<div class="card" data-v="9">
+  <span class="card-label">V9</span>
+  <div class="card-heading">
+    Built for speed.&nbsp;
+    <svg class="lightning-svg" viewBox="0 0 30 50" width="21" height="36" aria-hidden="true">
+      <path class="bolt" d="M26 2L4 24h18L2 48" fill="none" stroke="#CDFF00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="accent mark">Made for flow.</span>
+  </div>
+  <div class="card-meta">
+    <span class="card-desc">Aggressive slash — wide angle, dramatic</span>
+    <button class="replay-btn" onclick="replay(this)">&#8635; Replay</button>
+  </div>
+</div>
+
+<!-- V10: Spark burst (bolt + radiating lines) -->
+<div class="card" data-v="10">
+  <span class="card-label">V10</span>
+  <div class="card-heading">
+    Built for speed.&nbsp;
+    <svg class="lightning-svg" viewBox="0 0 42 52" width="28" height="38" aria-hidden="true">
+      <path class="bolt" d="M26 2L14 20h9L9 48" fill="none" stroke="#CDFF00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <line class="bolt bolt-spark" x1="6" y1="14" x2="2" y2="10" stroke="#CDFF00" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+      <line class="bolt bolt-spark" x1="30" y1="30" x2="38" y2="28" stroke="#CDFF00" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+      <line class="bolt bolt-spark" x1="26" y1="38" x2="34" y2="42" stroke="#CDFF00" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <span class="accent mark">Made for flow.</span>
+  </div>
+  <div class="card-meta">
+    <span class="card-desc">Spark burst — bolt + radiating energy lines</span>
+    <button class="replay-btn" onclick="replay(this)">&#8635; Replay</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+// Init: measure all stroke paths, set dasharray/offset, then animate once
+document.querySelectorAll('.card').forEach(function(card){
+  card.querySelectorAll('.bolt').forEach(function(b){
+    var len = b.getTotalLength();
+    b.style.strokeDasharray = len;
+    b.style.strokeDashoffset = len;
+  });
+  animateCard(card);
+});
+
+function animateCard(card){
+  var isV3 = card.getAttribute('data-v') === '3';
+  var svg = card.querySelector('.lightning-svg');
+  var bolts = card.querySelectorAll('.bolt');
+  var mainBolts = card.querySelectorAll('.bolt:not(.bolt-branch):not(.bolt-spark)');
+  var branches = card.querySelectorAll('.bolt-branch');
+  var sparks = card.querySelectorAll('.bolt-spark');
+  var fill = card.querySelector('.bolt-fill');
+
+  // Reset stroke paths
+  bolts.forEach(function(b){
+    b.style.transition = 'none';
+    b.style.strokeDashoffset = b.getTotalLength();
+  });
+
+  // Reset V3 effects
+  if(svg){ svg.classList.remove('glow'); }
+  if(fill){ fill.classList.remove('flash'); fill.style.opacity = '0'; }
+
+  // Force reflow
+  card.offsetHeight;
+
+  // V3: fast aggressive draw + glow + fill flash
+  if(isV3){
+    var drawTime = 0.22;
+    mainBolts.forEach(function(b){
+      b.style.transition = 'stroke-dashoffset ' + drawTime + 's cubic-bezier(.12,0,.25,1)';
+      b.style.strokeDashoffset = '0';
+    });
+    // Trigger glow + bounce on SVG after draw completes
+    setTimeout(function(){
+      if(svg) svg.classList.add('glow');
+      if(fill){ fill.classList.add('flash'); }
+    }, drawTime * 800);
+    return;
+  }
+
+  // Default animation for all other variants
+  var mainDuration = 0.5;
+  mainBolts.forEach(function(b, i){
+    b.style.transition = 'stroke-dashoffset ' + mainDuration + 's cubic-bezier(.4,0,.2,1) ' + (i * 0.12) + 's';
+    b.style.strokeDashoffset = '0';
+  });
+
+  branches.forEach(function(b){
+    b.style.transition = 'stroke-dashoffset 0.3s cubic-bezier(.4,0,.2,1) ' + (mainDuration * 0.6) + 's';
+    b.style.strokeDashoffset = '0';
+  });
+
+  sparks.forEach(function(b, i){
+    b.style.transition = 'stroke-dashoffset 0.2s cubic-bezier(.4,0,.2,1) ' + (mainDuration * 0.5 + i * 0.08) + 's';
+    b.style.strokeDashoffset = '0';
+  });
+}
+
+function replay(btn){
+  var card = btn.closest('.card');
+  animateCard(card);
+}
+</script>
+</body>
+</html>

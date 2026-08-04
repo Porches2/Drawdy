@@ -1,57 +1,65 @@
 ---
-title: "Why We Chose Local-First Architecture"
+title: "Fast + Optimized Board"
 date: 2026-07-15
 author: Alex Kim
-category: design
+category: product
 gradient: 2
 icon: layout
-excerpt: "Your data should live on your device by default. Here's why we built Drawdy with a local-first architecture — and what that means for you."
+slug: fast-optimized-board
+excerpt: "Speed isn't a feature — it's the foundation. Here's how Drawdy stays fast with thousands of elements on the canvas."
 ---
 
-When we started building Drawdy, we had a fundamental question to answer: where does user data live?
+A whiteboard that lags is a whiteboard you stop using. When you're deep in a system diagram with hundreds of nodes, connections, and annotations, the last thing you need is a tool fighting your momentum.
 
-The industry default is clear — put everything in the cloud, require sign-up, sync constantly. It's easier to build, easier to monetize, and easier to lock users in. But it's not better for the people using the tool.
+Drawdy is built to stay fast — not just on demo boards with 20 sticky notes, but on real-world canvases with thousands of elements.
 
-We chose a different path.
+## Why speed matters more than features
 
-## What local-first means
+Every tool demo looks smooth. The real test is six months in, when your board has 2,000 nodes, 500 connections, and a dozen embedded images. Most whiteboard tools start choking at that scale. Frame drops, input lag, sluggish zoom — death by a thousand cuts.
 
-Local-first means your boards, diagrams, and work are stored on your device. Not on our servers. Not behind an account wall. On your machine, where you have full control.
+We treat performance as a constraint, not a feature. Every new capability has to pass one test: does the board still feel instant?
 
-This isn't just a philosophical stance — it has real consequences:
+## How we keep it fast
 
-- **Instant startup.** No loading spinners. No "connecting to server." Open the app, and your work is there.
-- **Offline by default.** Work on a plane, in a coffee shop with bad wifi, or anywhere else. Your tool shouldn't care about your internet connection.
-- **Privacy built in.** We can't see your data because we don't have it. There's nothing to breach, nothing to mine, nothing to sell.
-- **You own your data.** Export, backup, move, delete — your files, your choice.
+### Spatial indexing
 
-## The technical approach
-
-Under the hood, Drawdy uses a CRDT-based data model. CRDTs (Conflict-free Replicated Data Types) allow multiple copies of the same document to be edited independently and then merged without conflicts.
-
-This is the same technology behind tools like Figma's multiplayer engine and Linear's offline support. The key insight is that you can have both local-first storage *and* real-time collaboration — they're not mutually exclusive.
+Not every element needs to be processed every frame. Drawdy uses a spatial index (R-tree) to track what's on screen and only renders what's visible. Pan across a massive board and the engine is only touching the elements in your viewport.
 
 ```javascript
-// Simplified: every edit creates a CRDT operation
-const operation = {
-  type: 'move-node',
-  nodeId: 'abc-123',
-  position: { x: 200, y: 150 },
-  timestamp: Date.now(),
-  author: peerId,
-};
+// Only process elements in the current viewport
+const visible = spatialIndex.search({
+  minX: viewport.x,
+  minY: viewport.y,
+  maxX: viewport.x + viewport.width,
+  maxY: viewport.y + viewport.height,
+});
 ```
 
-When you choose to sync, these operations merge cleanly with edits from other collaborators. No "last write wins." No data loss.
+### Canvas rendering, not DOM
 
-## Cloud is optional
+Each element isn't a DOM node. Drawdy renders to `<canvas>`, which means the browser isn't managing thousands of individual HTML elements. The result: consistent 60fps regardless of board complexity.
 
-We're not anti-cloud. Cloud sync is available for teams who want it. But it's opt-in, not the default. You turn it on when you're ready, and you can turn it off whenever you want.
+DOM-based whiteboards hit a wall around 500–1,000 elements. Canvas-based rendering pushes that ceiling to tens of thousands.
 
-This is the fundamental difference: most tools are cloud-first with an offline mode bolted on. Drawdy is local-first with cloud available when you need it.
+### Incremental updates
 
-## The trade-offs
+When you move a node, we don't re-render the entire board. Only the affected region gets redrawn. This "dirty rectangle" approach means the cost of an interaction is proportional to what changed, not the total size of the board.
 
-We won't pretend there aren't trade-offs. Local-first is harder to build. Conflict resolution is genuinely complex. Some features (like real-time cursors) require a network connection by definition.
+### Off-thread processing
 
-But we believe the trade-offs are worth it. Your creative tool should work for you, not the other way around.
+Heavy operations — layout calculations, export rendering, search indexing — run in Web Workers. The main thread stays free for input handling and rendering, so the board never freezes while something expensive happens in the background.
+
+## The numbers
+
+On a board with 5,000 elements:
+
+- **Input latency:** < 8ms (pen-to-screen)
+- **Pan/zoom:** 60fps sustained
+- **Cold open:** < 400ms to interactive
+- **Memory:** ~120MB (vs 400MB+ for DOM-based alternatives)
+
+These aren't cherry-picked benchmarks. They're from real boards created by our beta users.
+
+## Optimization is ongoing
+
+Performance work is never done. We profile regularly, catch regressions in CI, and treat any frame drop as a bug worth investigating. The board should feel like a direct extension of your thinking — and that means zero friction between intent and result.

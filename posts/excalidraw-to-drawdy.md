@@ -34,7 +34,7 @@ Excalidraw stores boards in browser localStorage or exports to files. Drawdy use
 
 Drawdy ships with a plugin API from day one. Custom node types, integrations with external tools, workflow automations — the canvas is a platform, not just a drawing surface.
 
-### Individual post pages (like this one)
+### A product, not just a tool
 
 Excalidraw is a tool; Drawdy is building a product. That means a landing page, blog, documentation, community, and a clear roadmap. We're here for the long term.
 

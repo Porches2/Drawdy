@@ -8,7 +8,7 @@ icon: layers
 excerpt: "Meet Drawdy — the whiteboard that thinks like code. An infinite canvas designed for system thinkers, architects, and builders."
 ---
 
-We're excited to introduce Drawdy — an infinite canvas built from scratch for people who think in systems.
+Today we're launching Drawdy — an infinite canvas built from scratch for people who think in systems.
 
 Whiteboards are great for brainstorming, but they fall apart when you need structure. Design tools are beautiful, but they weren't made for architecture diagrams or technical planning. Code editors are powerful, but they can't show the big picture.
 
@@ -29,6 +29,6 @@ We wanted to build a tool where your architectural thinking and your implementat
 
 ## What's next
 
-We're shipping fast. In the coming weeks, you'll see real-time collaboration, version history, and our first set of community plugins. Follow along on this blog — we'll share the technical decisions, design philosophy, and roadmap as we build in the open.
+We're shipping fast. Real-time collaboration and unlimited version history are already live — we've written about how we built both on this blog. Next up: our first set of community plugins. Follow along here — we share the technical decisions, design philosophy, and roadmap as we build in the open.
 
 Welcome to Drawdy.

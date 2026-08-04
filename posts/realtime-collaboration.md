@@ -58,6 +58,4 @@ The relay server never stores your document content — it only forwards encrypt
 
 ## What's next
 
-We're working on commenting, board-level permissions, and guest access links. Collaboration isn't just about seeing each other's cursors — it's about having conversations in context.
-
-Stay tuned.
+We're working on commenting, board-level permissions, and guest access links. Collaboration isn't just about seeing each other's cursors — it's about having conversations in context. That's the part we're building toward.

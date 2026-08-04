@@ -10,7 +10,11 @@
 <meta property="og:description" content="Meet Drawdy — the whiteboard that thinks like code. An infinite canvas designed for system thinkers, architects, and builders.">
 <meta property="og:url" content="https://drawdy-landing.vercel.app/blog/introducing-drawdy">
 <meta property="og:site_name" content="Drawdy">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://drawdy-landing.vercel.app/blog/thumbnails/introducing-drawdy.png">
+<meta property="og:image:width" content="819">
+<meta property="og:image:height" content="521">
+<meta name="twitter:image" content="https://drawdy-landing.vercel.app/blog/thumbnails/introducing-drawdy.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Introducing Drawdy: The Infinite Canvas for Builders">
 <meta name="twitter:description" content="Meet Drawdy — the whiteboard that thinks like code. An infinite canvas designed for system thinkers, architects, and builders.">
 <link rel="canonical" href="https://drawdy-landing.vercel.app/blog/introducing-drawdy">
@@ -78,21 +82,14 @@ img{display:block;max-width:100%}
   padding:140px 24px 0;
 }
 .article-hero-inner{
-  width:100%;aspect-ratio:16/9;border-radius:var(--radius);
+  width:100%;aspect-ratio:819/521;border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
 .article-hero-inner .thumb-icon{
-  width:80px;height:80px;
+  width:100%;height:100%;
 }
-.grad-1{background:#F4F2E6}
-.grad-2{background:#EBEAF5}
-.grad-3{background:#E4ECF6}
-.grad-4{background:#EDF3E0}
-.grad-5{background:#EAE7F4}
-.grad-6{background:#E2ECF3}
-.grad-7{background:#EDEAD4}
-.grad-8{background:#EBF2E3}
+.grad-1,.grad-2,.grad-3,.grad-4,.grad-5,.grad-6,.grad-7,.grad-8{background:transparent}
 
 /* ---------- Article Layout ---------- */
 .article-header{
@@ -273,8 +270,8 @@ footer a:hover{color:var(--ink)}
 </a>
 
 <div class="article-hero">
-  <div class="article-hero-inner grad-1">
-    <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><rect x="5" y="6" width="24" height="20" rx="4" fill="white" fill-opacity="0.3" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.22" stroke-linejoin="round"/><rect x="12" y="13" width="24" height="20" rx="4" fill="white" fill-opacity="0.4" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.35" stroke-linejoin="round"/><rect x="19" y="20" width="24" height="20" rx="4" fill="white" fill-opacity="0.5" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.5" stroke-linejoin="round"/></svg>
+  <div class="article-hero-inner">
+    <img class="thumb-icon" src="/blog/thumbnails/introducing-drawdy.png" alt="Introducing Drawdy: The Infinite Canvas for Builders" loading="lazy"/>
   </div>
 </div>
 
@@ -292,7 +289,7 @@ footer a:hover{color:var(--ink)}
   </header>
 
   <div class="article-content">
-    <p>We’re excited to introduce Drawdy — an infinite canvas built from scratch for people who think in systems.</p>
+    <p>Today we’re launching Drawdy — an infinite canvas built from scratch for people who think in systems.</p>
 <p>Whiteboards are great for brainstorming, but they fall apart when you need structure. Design tools are beautiful, but they weren’t made for architecture diagrams or technical planning. Code editors are powerful, but they can’t show the big picture.</p>
 <p>Drawdy lives in the space between all three.</p>
 <h2>Why we built this</h2>
@@ -306,7 +303,7 @@ footer a:hover{color:var(--ink)}
 <li><strong>Extensible.</strong> A plugin API that lets you build custom nodes, integrations, and workflows on top of the canvas.</li>
 </ul>
 <h2>What’s next</h2>
-<p>We’re shipping fast. In the coming weeks, you’ll see real-time collaboration, version history, and our first set of community plugins. Follow along on this blog — we’ll share the technical decisions, design philosophy, and roadmap as we build in the open.</p>
+<p>We’re shipping fast. Real-time collaboration and unlimited version history are already live — we’ve written about how we built both on this blog. Next up: our first set of community plugins. Follow along here — we share the technical decisions, design philosophy, and roadmap as we build in the open.</p>
 <p>Welcome to Drawdy.</p>
 
   </div>
@@ -314,15 +311,15 @@ footer a:hover{color:var(--ink)}
 
 <nav class="post-nav" aria-label="Post navigation">
   
-  <a class="post-nav-link next" href="/blog/local-first-architecture">
+  <a class="post-nav-link next" href="/blog/fast-optimized-board">
     <span class="post-nav-label">Next &rarr;</span>
-    <span class="post-nav-title">Why We Chose Local-First Architecture</span>
+    <span class="post-nav-title">Fast + Optimized Board</span>
   </a>
 </nav>
 
 <footer>
   <a class="logo" href="/" aria-label="Drawdy"><img class="logo-img footer-logo-img" src="/Logo.svg" alt="Drawdy"></a>
-  <span>&copy; 2026 Drawdy</span>
+  <span>&copy; 2026 Drawdy &middot; <a href="/blog/feed.xml">RSS</a></span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>

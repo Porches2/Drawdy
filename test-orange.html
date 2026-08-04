@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orange Highlighter — Wire Test</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #F5F5F0; font-family: 'Google Sans Flex', system-ui, sans-serif; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 40px; }
+  .wrap { max-width: 960px; width: 100%; }
+  h2 { text-align: center; color: #17171B; margin-bottom: 8px; font-size: 22px; }
+  p { text-align: center; color: #8A8A82; font-size: 13px; margin-bottom: 32px; }
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h2>Orange Highlighter Marker</h2>
+  <p>#FF8C00 at 30% opacity, 18px wide — dark 4px core on top</p>
+  <svg viewBox="0 0 900 550" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'Google Sans Flex',system-ui,sans-serif">
+    <defs>
+      <pattern id="platDots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="#E4E4DB"/></pattern>
+    </defs>
+    <rect width="900" height="550" fill="url(#platDots)"/>
+
+    <g transform="translate(8 100)">
+
+      <!-- === ORANGE HIGHLIGHTER LAYER === -->
+      <!-- Branch: DOWN-RIGHT → Timeline -->
+      <path d="M620.231 188.121C645.28 228.887 710.259 310.417 769.786 310.417" stroke="#FF8C00" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+      <!-- Branch: DOWN-LEFT → Charts -->
+      <path d="M244.784 188.121C219.735 228.887 154.756 310.417 95.229 310.417" stroke="#FF8C00" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+      <!-- Branch: UP-RIGHT → Tasks -->
+      <path d="M615.658 186.94C637.828 183.887 698.098 156.701 698.098 102.11V40.5096C698.098 23.941 711.53 10.5095 728.098 10.5095H769.786" stroke="#FF8C00" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+      <!-- Branch: UP-LEFT → Code -->
+      <path d="M246.421 183.46C224.251 180.407 164.876 149.191 164.876 94.6004V33C164.876 16.4315 151.444 3 134.876 3H93.1879" stroke="#FF8C00" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+      <!-- Branch: DOWN → AI Assistant -->
+      <path d="M432 188V264" stroke="#FF8C00" stroke-width="18" stroke-linecap="round" opacity="0.3"/>
+      <!-- Main wire -->
+      <path d="M3 158.634H60.6925C77.6413 158.634 94.3234 162.388 110.186 168.359C141.167 180.021 185 193.022 213.563 190.082C260.05 185.296 293.665 171.094 317.287 142.49C340.908 113.885 337.977 95.1244 333.157 86.5727C331.175 83.0553 326.66 80.0442 320.243 79.6772C311.989 79.2052 302.137 83.3316 295.51 91.3709C284.253 105.027 272.627 126.434 282.592 156.515C292.558 186.596 339.801 193.793 372.096 188.257C404.391 182.72 453.665 149.502 470.827 105.95C487.99 62.3975 459.57 48.5566 436.502 58.3375C413.434 68.1183 399.962 99.4909 402.915 128.649C405.868 157.807 439.7 195.249 488.973 190.082C538.246 184.914 574.295 151.06 590.165 126.7C606.036 102.34 603.735 67.4183 577.346 72.2164C550.956 77.0146 532.616 119.659 540.489 143.641C548.362 167.623 589.12 191.948 646.698 187.703C704.276 183.459 733.634 159.373 768.324 157.356C796.076 155.743 854.644 156.684 880.46 157.356" stroke="#FF8C00" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+
+      <!-- === DARK CORE STROKE === -->
+      <!-- Branch: DOWN-RIGHT → Timeline -->
+      <path d="M620.231 188.121C645.28 228.887 710.259 310.417 769.786 310.417" stroke="#2B2B28" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Branch: DOWN-LEFT → Charts -->
+      <path d="M244.784 188.121C219.735 228.887 154.756 310.417 95.229 310.417" stroke="#2B2B28" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Branch: UP-RIGHT → Tasks -->
+      <path d="M615.658 186.94C637.828 183.887 698.098 156.701 698.098 102.11V40.5096C698.098 23.941 711.53 10.5095 728.098 10.5095H769.786" stroke="#2B2B28" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Branch: UP-LEFT → Code -->
+      <path d="M246.421 183.46C224.251 180.407 164.876 149.191 164.876 94.6004V33C164.876 16.4315 151.444 3 134.876 3H93.1879" stroke="#2B2B28" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Branch: DOWN → AI Assistant -->
+      <path d="M432 188V264" stroke="#2B2B28" stroke-width="4" stroke-linecap="round"/>
+      <!-- Main wire -->
+      <path d="M3 158.634H60.6925C77.6413 158.634 94.3234 162.388 110.186 168.359C141.167 180.021 185 193.022 213.563 190.082C260.05 185.296 293.665 171.094 317.287 142.49C340.908 113.885 337.977 95.1244 333.157 86.5727C331.175 83.0553 326.66 80.0442 320.243 79.6772C311.989 79.2052 302.137 83.3316 295.51 91.3709C284.253 105.027 272.627 126.434 282.592 156.515C292.558 186.596 339.801 193.793 372.096 188.257C404.391 182.72 453.665 149.502 470.827 105.95C487.99 62.3975 459.57 48.5566 436.502 58.3375C413.434 68.1183 399.962 99.4909 402.915 128.649C405.868 157.807 439.7 195.249 488.973 190.082C538.246 184.914 574.295 151.06 590.165 126.7C606.036 102.34 603.735 67.4183 577.346 72.2164C550.956 77.0146 532.616 119.659 540.489 143.641C548.362 167.623 589.12 191.948 646.698 187.703C704.276 183.459 733.634 159.373 768.324 157.356C796.076 155.743 854.644 156.684 880.46 157.356" stroke="#2B2B28" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- Connection dots (lime) — at junction points -->
+      <circle cx="244.784" cy="183.46" r="7" fill="#CDFF00"/>
+      <circle cx="432" cy="188" r="7" fill="#CDFF00"/>
+      <circle cx="615.658" cy="185.197" r="7" fill="#CDFF00"/>
+    </g>
+
+    <!-- Plugin: Database (beside wire left tip) -->
+    <g class="plug">
+      <rect x="-31" y="238" width="42" height="42" rx="8" fill="white" stroke="#D8D8D0" stroke-width="1.5"/>
+      <g transform="translate(-22 247)" stroke="#3A3A36" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></g>
+      <text x="-10" y="298" font-weight="600" font-size="14" fill="#17171B" text-anchor="middle">Database</text>
+      <text x="-10" y="314" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">Structure your data,</text>
+      <text x="-10" y="327" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">use it everywhere</text>
+    </g>
+
+    <!-- Plugin: Code (above wire — UP-LEFT branch endpoint) -->
+    <g class="plug">
+      <rect x="80" y="82" width="42" height="42" rx="8" fill="white" stroke="#D8D8D0" stroke-width="1.5"/>
+      <g transform="translate(89 91)" stroke="#3A3A36" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l4-4-4-4"/><path d="M8 6L4 10l4 4"/><path d="M14 4l-4 16"/></g>
+      <text x="101" y="142" font-weight="600" font-size="14" fill="#17171B" text-anchor="middle">Code</text>
+      <text x="101" y="158" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">Build, preview, and</text>
+      <text x="101" y="171" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">ship directly</text>
+    </g>
+
+    <!-- Plugin: Charts (beside DOWN-LEFT branch tip, to the left) -->
+    <g class="plug">
+      <rect x="35" y="390" width="42" height="42" rx="8" fill="white" stroke="#D8D8D0" stroke-width="1.5"/>
+      <g transform="translate(44 399)" stroke="#3A3A36" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9M13 17V5M8 17v-3"/></g>
+      <text x="56" y="450" font-weight="600" font-size="14" fill="#17171B" text-anchor="middle">Charts</text>
+      <text x="56" y="466" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">Visualize insights,</text>
+      <text x="56" y="479" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">make better calls</text>
+    </g>
+
+    <!-- Plugin: AI Assistant (below wire — center branch) -->
+    <g class="plug">
+      <rect x="419" y="364" width="42" height="42" rx="8" fill="white" stroke="#D8D8D0" stroke-width="1.5"/>
+      <g transform="translate(428 373)" stroke="#3A3A36" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l2.5 2.5M16.5 16.5L19 19M19 5l-2.5 2.5M7.5 16.5L5 19"/></g>
+      <text x="440" y="424" font-weight="600" font-size="14" fill="#17171B" text-anchor="middle">AI Assistant</text>
+      <text x="440" y="440" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">Smart context for your</text>
+      <text x="440" y="453" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">entire canvas</text>
+    </g>
+
+    <!-- Plugin: Timeline (beside DOWN-RIGHT branch tip, to the right) -->
+    <g class="plug">
+      <rect x="800" y="390" width="42" height="42" rx="8" fill="white" stroke="#D8D8D0" stroke-width="1.5"/>
+      <g transform="translate(809 399)" stroke="#3A3A36" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 2v20"/><circle cx="5" cy="6" r="2"/><circle cx="5" cy="13" r="2"/><circle cx="5" cy="20" r="2"/><path d="M10 6h10M10 13h8M10 20h6"/></g>
+      <text x="821" y="450" font-weight="600" font-size="14" fill="#17171B" text-anchor="middle">Timeline</text>
+      <text x="821" y="466" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">Track events,</text>
+      <text x="821" y="479" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">see the full story</text>
+    </g>
+
+    <!-- Plugin: Tasks (above wire — UP-RIGHT branch endpoint) -->
+    <g class="plug">
+      <rect x="757" y="90" width="42" height="42" rx="8" fill="white" stroke="#D8D8D0" stroke-width="1.5"/>
+      <g transform="translate(766 99)" stroke="#3A3A36" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5h8M12 12h8M12 19h8M3 7l2 2 4-4M3 17l2 2 4-4"/></g>
+      <text x="778" y="150" font-weight="600" font-size="14" fill="#17171B" text-anchor="middle">Tasks</text>
+      <text x="778" y="166" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">Plan, assign, and</text>
+      <text x="778" y="179" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">track progress</text>
+    </g>
+
+    <!-- Plugin: Calendar (beside wire right tip) -->
+    <g class="plug">
+      <rect x="889" y="236" width="42" height="42" rx="8" fill="white" stroke="#D8D8D0" stroke-width="1.5"/>
+      <g transform="translate(898 245)" stroke="#3A3A36" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></g>
+      <text x="910" y="296" font-weight="600" font-size="14" fill="#17171B" text-anchor="middle">Calendar</text>
+      <text x="910" y="312" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">Schedule, sync, and</text>
+      <text x="910" y="325" font-weight="400" font-size="11" fill="#8A8A82" text-anchor="middle">never miss a beat</text>
+    </g>
+  </svg>
+</div>
+</body>
+</html>

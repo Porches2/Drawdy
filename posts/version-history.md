@@ -37,7 +37,7 @@ const snapshot = {
 };
 ```
 
-Snapshots are compressed using a binary diff against the previous snapshot. For a typical board, a month of active editing produces around 2-5 MB of history data. Manageable even on modest devices.
+Snapshots are compressed using a binary diff against the previous snapshot. For a typical board, a month of active editing produces around 2–5 MB of history data. Manageable even on modest devices.
 
 ## Why other tools charge for it
 

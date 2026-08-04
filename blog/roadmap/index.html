@@ -10,7 +10,11 @@
 <meta property="og:description" content="A transparent look at what we're building next — from collaboration features to the plugin ecosystem and beyond.">
 <meta property="og:url" content="https://drawdy-landing.vercel.app/blog/roadmap">
 <meta property="og:site_name" content="Drawdy">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://drawdy-landing.vercel.app/blog/thumbnails/roadmap.png">
+<meta property="og:image:width" content="819">
+<meta property="og:image:height" content="521">
+<meta name="twitter:image" content="https://drawdy-landing.vercel.app/blog/thumbnails/roadmap.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Our Roadmap: What's Coming Next">
 <meta name="twitter:description" content="A transparent look at what we're building next — from collaboration features to the plugin ecosystem and beyond.">
 <link rel="canonical" href="https://drawdy-landing.vercel.app/blog/roadmap">
@@ -78,21 +82,14 @@ img{display:block;max-width:100%}
   padding:140px 24px 0;
 }
 .article-hero-inner{
-  width:100%;aspect-ratio:16/9;border-radius:var(--radius);
+  width:100%;aspect-ratio:819/521;border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
 }
 .article-hero-inner .thumb-icon{
-  width:80px;height:80px;
+  width:100%;height:100%;
 }
-.grad-1{background:#F4F2E6}
-.grad-2{background:#EBEAF5}
-.grad-3{background:#E4ECF6}
-.grad-4{background:#EDF3E0}
-.grad-5{background:#EAE7F4}
-.grad-6{background:#E2ECF3}
-.grad-7{background:#EDEAD4}
-.grad-8{background:#EBF2E3}
+.grad-1,.grad-2,.grad-3,.grad-4,.grad-5,.grad-6,.grad-7,.grad-8{background:transparent}
 
 /* ---------- Article Layout ---------- */
 .article-header{
@@ -273,8 +270,8 @@ footer a:hover{color:var(--ink)}
 </a>
 
 <div class="article-hero">
-  <div class="article-hero-inner grad-8">
-    <svg class="thumb-icon" viewBox="0 0 48 48" fill="none"><path d="M6,38 C12,38 14,26 20,26 C26,26 28,32 34,28 C38,25 40,14 42,8" stroke="#A9C41E" stroke-width="5" stroke-opacity="0.45" stroke-linecap="round"/><path d="M36,8 L42,8 L42,14" stroke="#A9C41E" stroke-width="4" stroke-opacity="0.45" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="38" r="3" fill="#A9C41E" fill-opacity="0.35"/></svg>
+  <div class="article-hero-inner">
+    <img class="thumb-icon" src="/blog/thumbnails/roadmap.png" alt="Our Roadmap: What's Coming Next" loading="lazy"/>
   </div>
 </div>
 
@@ -341,7 +338,7 @@ footer a:hover{color:var(--ink)}
 
 <footer>
   <a class="logo" href="/" aria-label="Drawdy"><img class="logo-img footer-logo-img" src="/Logo.svg" alt="Drawdy"></a>
-  <span>&copy; 2026 Drawdy</span>
+  <span>&copy; 2026 Drawdy &middot; <a href="/blog/feed.xml">RSS</a></span>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
